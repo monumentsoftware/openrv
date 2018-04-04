@@ -1,44 +1,37 @@
-#
-# Android: When building for android, call cmake using -DBUILD_ANDROID=YES when calling cmake for
-# the first time.
-# This will enable the toolchain file for android and require the NDK at a certain location.
-# NOTE: Once configured, -DBUILD_ANDROID=YES can not be changed anymore.
-#
-
-if (BUILD_ANDROID AND NOT BUILD_ANDROID_CACHE)
-  # Make the flag persistent - changing it is only possible by deleting the generated cmake files of
-  # the build.
-  set(BUILD_ANDROID_CACHE YES CACHE INTERNAL "Android build is enabled, android toolchain file is being used." FORCE)
-endif ()
-if (BUILD_ANDROID_CACHE)
-  set(BUILD_ANDROID YES)
-endif ()
-
-if (BUILD_ANDROID)
-  # NOTE: CMAKE_TOOLCHAIN_FILE must be BEFORE project()!
-  set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/android/cmake/android.toolchain.cmake")
-  # Variables used by CMAKE_TOOLCHAIN_FILE:
-  # NOTE: ANDROID_NDK is preferred over ANDROID_STANDALONE_TOOLCHAIN, if present.
-  if(DEFINED ENV{ANDROID_NDK})
-    set(ANDROID_NDK $ENV{ANDROID_NDK})
-  else()
-    # common fallback
-    set(ANDROID_NDK "/opt/android-ndk-r10e")
-  endif()
-  message(STATUS "Using NDK directory: ${ANDROID_NDK}")
-  # Force using gcc 4.9
-  #  NOTE: available toolchains: contents of ${ANDROID_NDK}/toolchains/
-  # TODO: how to support multiple platforms?
-  set(ANDROID_TOOLCHAIN_NAME "arm-linux-androideabi-clang3.6")
-endif ()
-
-
 project(openrvclient)
-# NOTE: cmake support for Qt5 recommends at least 2.8.11
-#       Qt support in previous cmake versions works differently, we do not support that.
-cmake_minimum_required(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.0.0)
 
 include(${CMAKE_SOURCE_DIR}/version.cmake)
+
+set(ORV_BUILD_STATIC_LIB_DEFAULT ON)
+set(ORV_BUILD_SHARED_LIB_DEFAULT ON)
+if (ANDROID)
+  set(ORV_BUILD_STATIC_LIB_DEFAULT OFF)
+  set(ORV_BUILD_SHARED_LIB_DEFAULT ON)
+endif ()
+
+option(ORV_BUILD_STATIC_LIB
+  "Build a static library."
+  ${ORV_BUILD_STATIC_LIB_DEFAULT}
+)
+option(ORV_BUILD_SHARED_LIB
+  "Build a shared library."
+  ${ORV_BUILD_SHARED_LIB_DEFAULT}
+)
+if (NOT ANDROID)
+  option(ORV_BUILD_CMDLINE
+    "Build the command line test tool for OpenRV, if supported by the target platform."
+    ON
+  )
+  option(ORV_BUILD_QT_CLIENT
+    "Build the Qt test client, if the Qt libraries are found. Note that building the client will be
+    disabled with a warning, if the libraries are not found."
+    ON
+  )
+else ()
+  set(ORV_BUILD_CMDLINE OFF)
+  set(ORV_BUILD_QT_CLIENT OFF)
+endif ()
 
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU" OR "${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
   set(CMAKE_C_FLAGS_DEBUG "-g")
@@ -133,38 +126,32 @@ else ()
 endif ()
 
 
-if (NOT ANDROID)
-  set(BUILD_QT_APP TRUE)
-  #PATHS ${HOME}/Qt/5.5/clang_64/bin
-  if (BUILD_QT_APP)
-    find_package(OpenGL)
-    set(required_qt_modules Qt5Core Qt5OpenGL Qt5Network Qt5Gui Qt5Widgets)
-    if (NOT OPENGL_FOUND)
-      message(WARNING "OpenGL headers/library not found. Not building the Qt app.")
+if (ORV_BUILD_QT_CLIENT)
+  find_package(OpenGL)
+  set(required_qt_modules Qt5Core Qt5OpenGL Qt5Network Qt5Gui Qt5Widgets)
+  if (NOT OPENGL_FOUND)
+    message(WARNING "OpenGL headers/library not found. Not building the Qt app.")
+    set(BUILD_QT_APP FALSE)
+  endif ()
+  foreach (q ${required_qt_modules})
+    find_package(${q}
+      PATHS $ENV{HOME}/Qt/5.5/clang_64
+            $ENV{HOME}/dev/Qt/5.3/clang_64
+    )
+    if (NOT ${q}_FOUND)
+      if (BUILD_QT_APP)
+        message(WARNING "Qt module ${q} not found. Not building the Qt app.")
+      endif ()
+      set(BUILD_QT_APP FALSE)
+    elseif (${q}_VERSION VERSION_LESS "5.4.0")
+      # QOpenGLWidget exists since Qt 5.4, we do not provide non-GL variants or QGLWidget based
+      # variants atm.
+      if (BUILD_QT_APP)
+        message(WARNING "Require at least Qt 5.4, found: ${${q}_VERSION}. Not building the Qt app.")
+      endif ()
       set(BUILD_QT_APP FALSE)
     endif ()
-  endif ()
-  if (BUILD_QT_APP)
-    foreach (q ${required_qt_modules})
-      find_package(${q}
-        PATHS $ENV{HOME}/Qt/5.5/clang_64
-              $ENV{HOME}/dev/Qt/5.3/clang_64
-      )
-      if (NOT ${q}_FOUND)
-        if (BUILD_QT_APP)
-          message(WARNING "Qt module ${q} not found. Not building the Qt app.")
-        endif ()
-        set(BUILD_QT_APP FALSE)
-      elseif (${q}_VERSION VERSION_LESS "5.4.0")
-        # QOpenGLWidget exists since Qt 5.4, we do not provide non-GL variants or QGLWidget based
-        # variants atm.
-        if (BUILD_QT_APP)
-          message(WARNING "Require at least Qt 5.4, found: ${${q}_VERSION}. Not building the Qt app.")
-        endif ()
-        set(BUILD_QT_APP FALSE)
-      endif ()
-    endforeach ()
-  endif ()
+  endforeach ()
 endif ()
 
 include_directories(${CMAKE_BINARY_DIR})
@@ -215,100 +202,119 @@ set(libopenrv_SRCS
   ${libopenrv_thirdparty_SRCS}
   ${libopenrv_public_HDRS}
 )
-add_library(libopenrv STATIC ${libopenrv_SRCS})
-target_include_directories(libopenrv SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-target_include_directories(libopenrv PUBLIC ${CMAKE_SOURCE_DIR}/libopenrv/public ${CMAKE_BINARY_DIR}/libopenrv/public)
+
+
+# add an object library, a "virtual" library that is cmake internal and merely groups the object
+# files into a single target.
+# it is meant to be used by other cmake targets only and produces no library output by itself.
+add_library(openrv_object OBJECT ${libopenrv_SRCS})
+target_include_directories(openrv_object SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
+target_include_directories(openrv_object PUBLIC ${CMAKE_SOURCE_DIR}/libopenrv/public ${CMAKE_BINARY_DIR}/libopenrv/public)
+
+# cmake object libraries are currently not allowed to link to anything (apparently this is a cmake
+# todo). so we track the dependencies in a separate variable and the individual targets need to link
+# to them explicitly.
+set(libopenrv_object_libraries ${MBEDTLS_LIBRARIES} ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
+
+if (ORV_BUILD_STATIC_LIB)
+  add_library(openrv STATIC $<TARGET_OBJECTS:openrv_object>)
+endif ()
+if (ORV_BUILD_SHARED_LIB)
+  add_library(openrv_shared SHARED $<TARGET_OBJECTS:openrv_object>)
+  target_link_libraries(openrv_shared ${libopenrv_object_libraries})
+endif ()
+
 configure_file(${CMAKE_SOURCE_DIR}/libopenrv/public/libopenrv/orv_version.h.cmake ${CMAKE_BINARY_DIR}/libopenrv/public/libopenrv/orv_version.h)
 configure_file(${CMAKE_SOURCE_DIR}/libopenrv/public/libopenrv/orv_config.h.cmake ${CMAKE_BINARY_DIR}/libopenrv/public/libopenrv/orv_config.h)
-target_link_libraries(libopenrv ${MBEDTLS_LIBRARIES} ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
 
-if (NOT ANDROID)
-  add_executable(openrv_cmdline cmdline/main.cpp)
+if (ORV_BUILD_CMDLINE)
+  add_executable(openrv_cmdline cmdline/main.cpp $<TARGET_OBJECTS:openrv_object>)
   target_include_directories(openrv_cmdline PUBLIC ${CMAKE_SOURCE_DIR}/libopenrv/public ${CMAKE_BINARY_DIR}/libopenrv/public)
   target_link_libraries(openrv_cmdline
-    libopenrv
+    ${libopenrv_object_libraries}
     ${CMAKE_THREAD_LIBS_INIT}
   )
+endif ()
 
-
-  if (BUILD_QT_APP)
-    set(openrvclient_qt_srcs
-      qt/main.cpp
-      qt/orv_context_qt.cpp
-      qt/mainwindow.cpp
-      qt/topwidget.cpp
-      qt/serverlistmodel.cpp
-      qt/serverlistwidget.cpp
-      qt/newserverwidget.cpp
-      qt/connectstatewidget.cpp
-      qt/orvwidget.cpp
-      qt/framebufferwidget.cpp
-      qt/connectioninfowidget.cpp
-    )
-    set(openrvclient_qt_hdrs
-      qt/orv_context_qt.h
-      qt/topwidget.h
-      qt/serverlistmodel.h
-      qt/serverlistwidget.h
-      qt/mainwindow.h
-      qt/newserverwidget.h
-      qt/connectstatewidget.h
-      qt/orvwidget.h
-      qt/framebufferwidget.h
-      qt/connectioninfowidget.h
-    )
-    qt5_wrap_cpp(
-      openrvclient_qt_srcs
-      ${openrvclient_qt_hdrs}
-    )
-    #qt5_wrap_ui(
-    #  openrvclient_qt_srcs
-    #  qt/window.ui
-    #)
-    add_executable(openrvclient ${openrvclient_qt_srcs} ${openrvclient_qt_hdrs})
-    target_include_directories(openrvclient
-      PUBLIC
-      ${CMAKE_SOURCE_DIR}/libopenrv/public
-      ${CMAKE_BINARY_DIR}/libopenrv/public
-    )
-    target_include_directories(openrvclient
-      SYSTEM
-      PRIVATE
-      ${Qt5Core_INCLUDE_DIRS}
-      ${Qt5OpenGL_INCLUDE_DIRS}
-      ${Qt5Network_INCLUDE_DIRS}
-      ${Qt5Gui_INCLUDE_DIRS}
-      ${Qt5Widgets_INCLUDE_DIRS}
-      ${Qt5Test_INCLUDE_DIRS}
-      ${OPENGL_INCLUDE_DIR}
-    )
-    set_target_properties(openrvclient PROPERTIES COMPILE_DEFINITIONS
-      "${Qt5Core_COMPILE_DEFINITIONS};${Qt5OpenGL_COMPILE_DEFINITIONS};${Qt5Network_COMPILE_DEFINITIONS};${Qt5Gui_COMPILE_DEFINITIONS};${Qt5Widgets_COMPILE_DEFINITIONS}"
-    )
-    if (APPLE)
-      set_target_properties(openrvclient
-        PROPERTIES
-        MACOSX_BUNDLE TRUE
-        MACOSX_BUNDLE_BUNDLE_NAME          "OpenRVClient"
-        #MACOSX_BUNDLE_INFO_STRING          ""
-        # MACOSX_BUNDLE_ICON_FILE            "" # TODO
-        MACOSX_BUNDLE_LONG_VERSION_STRING  "${LIBOPENRV_VERSION_STRING}"
-        MACOSX_BUNDLE_SHORT_VERSION_STRING "${LIBOPENRV_VERSION_MAJOR}.${LIBOPENRV_VERSION_MINOR}.${LIBOPENRV_VERSION_PATCH}"
-        #MACOSX_BUNDLE_BUNDLE_VERSION       ""
-        MACOSX_BUNDLE_COPYRIGHT            "${LIBOPENRV_COPYRIGHT_STRING}"
-      )
-    endif ()
-    target_link_libraries(openrvclient
-      libopenrv
-      ${CMAKE_THREAD_LIBS_INIT}
-      Qt5::Core
-      Qt5::Network
-      Qt5::Gui
-      Qt5::Widgets
-      ${OPENGL_gl_LIBRARY}
+if (ORV_BUILD_QT_CLIENT)
+  set(openrvclient_qt_srcs
+    qt/main.cpp
+    qt/orv_context_qt.cpp
+    qt/mainwindow.cpp
+    qt/topwidget.cpp
+    qt/serverlistmodel.cpp
+    qt/serverlistwidget.cpp
+    qt/newserverwidget.cpp
+    qt/connectstatewidget.cpp
+    qt/orvwidget.cpp
+    qt/framebufferwidget.cpp
+    qt/connectioninfowidget.cpp
+  )
+  set(openrvclient_qt_hdrs
+    qt/orv_context_qt.h
+    qt/topwidget.h
+    qt/serverlistmodel.h
+    qt/serverlistwidget.h
+    qt/mainwindow.h
+    qt/newserverwidget.h
+    qt/connectstatewidget.h
+    qt/orvwidget.h
+    qt/framebufferwidget.h
+    qt/connectioninfowidget.h
+  )
+  qt5_wrap_cpp(
+    openrvclient_qt_srcs
+    ${openrvclient_qt_hdrs}
+  )
+  #qt5_wrap_ui(
+  #  openrvclient_qt_srcs
+  #  qt/window.ui
+  #)
+  add_executable(openrvclient ${openrvclient_qt_srcs} ${openrvclient_qt_hdrs} $<TARGET_OBJECTS:openrv_object>)
+  target_link_libraries(openrvclient
+    ${libopenrv_object_libraries}
+  )
+  target_include_directories(openrvclient
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/libopenrv/public
+    ${CMAKE_BINARY_DIR}/libopenrv/public
+  )
+  target_include_directories(openrvclient
+    SYSTEM
+    PRIVATE
+    ${Qt5Core_INCLUDE_DIRS}
+    ${Qt5OpenGL_INCLUDE_DIRS}
+    ${Qt5Network_INCLUDE_DIRS}
+    ${Qt5Gui_INCLUDE_DIRS}
+    ${Qt5Widgets_INCLUDE_DIRS}
+    ${Qt5Test_INCLUDE_DIRS}
+    ${OPENGL_INCLUDE_DIR}
+  )
+  set_target_properties(openrvclient PROPERTIES COMPILE_DEFINITIONS
+    "${Qt5Core_COMPILE_DEFINITIONS};${Qt5OpenGL_COMPILE_DEFINITIONS};${Qt5Network_COMPILE_DEFINITIONS};${Qt5Gui_COMPILE_DEFINITIONS};${Qt5Widgets_COMPILE_DEFINITIONS}"
+  )
+  if (APPLE)
+    set_target_properties(openrvclient
+      PROPERTIES
+      MACOSX_BUNDLE TRUE
+      MACOSX_BUNDLE_BUNDLE_NAME          "OpenRVClient"
+      #MACOSX_BUNDLE_INFO_STRING          ""
+      # MACOSX_BUNDLE_ICON_FILE            "" # TODO
+      MACOSX_BUNDLE_LONG_VERSION_STRING  "${LIBOPENRV_VERSION_STRING}"
+      MACOSX_BUNDLE_SHORT_VERSION_STRING "${LIBOPENRV_VERSION_MAJOR}.${LIBOPENRV_VERSION_MINOR}.${LIBOPENRV_VERSION_PATCH}"
+      #MACOSX_BUNDLE_BUNDLE_VERSION       ""
+      MACOSX_BUNDLE_COPYRIGHT            "${LIBOPENRV_COPYRIGHT_STRING}"
     )
   endif ()
-endif (NOT ANDROID)
+  target_link_libraries(openrvclient
+    ${CMAKE_THREAD_LIBS_INIT}
+    Qt5::Core
+    Qt5::Network
+    Qt5::Gui
+    Qt5::Widgets
+    ${OPENGL_gl_LIBRARY}
+  )
+endif ()
 
 # TODO: make install target
 
