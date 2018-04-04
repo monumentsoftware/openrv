@@ -234,8 +234,6 @@ void Socket::close()
  * If the socket is already open (connected or otherwise), the timeout is applied to the socket
  * immediately, otherwise the value will merely be stored internally and set on open.
  *
- * @return TRUE on success (timeout set on socket or socket not open), FALSE on error. On error, the
- *         @ref timeoutSeconds() value remains unmodified.
  **/
 void Socket::setSocketTimeoutSeconds(int timeoutSeconds)
 {

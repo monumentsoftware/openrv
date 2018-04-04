@@ -288,7 +288,7 @@ void SecurityTypeHandlerTight::handleTunnels(orv_error_t* error)
             if (!isRegisteredTunnelSupportedByServer[registeredIndex]) {
                 isRegisteredTunnelSupportedByServer[registeredIndex] = true;
                 if (isRegisteredTunnelSupportedByLibrary(&tunnel)) {
-                    supportedRegisteredTunnels[supportedRegisteredTunnelsCount] = registeredIndex,
+                    supportedRegisteredTunnels[supportedRegisteredTunnelsCount] = registeredIndex;
                     supportedRegisteredTunnelsCount++;
                 }
             }
@@ -370,7 +370,7 @@ void SecurityTypeHandlerTight::handleAuthTypes(orv_error_t* error)
             if (!isRegisteredAuthTypeSupportedByServer[registeredIndex]) {
                 isRegisteredAuthTypeSupportedByServer[registeredIndex] = true;
                 if (isRegisteredAuthCapabilitySupportedByLibrary(&authType)) {
-                    supportedRegisteredAuthTypes[supportedRegisteredAuthTypesCount] = registeredIndex,
+                    supportedRegisteredAuthTypes[supportedRegisteredAuthTypesCount] = registeredIndex;
                     supportedRegisteredAuthTypesCount++;
                 }
             }

@@ -1444,7 +1444,7 @@ void RectDataParserZRLE::clearCurrentTile()
     mFinishedTile = false;
     mCurrentTileSubencodingType = 0;
     mCurrentTileSubencodingTypeRead = false;
-    mCurrentTileRLEPixelsDone = 0,
+    mCurrentTileRLEPixelsDone = 0;
     mCurrentTileDataBytesRead = 0;
 }
 
