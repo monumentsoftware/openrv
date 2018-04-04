@@ -1,7 +1,7 @@
 project(openrvclient)
 cmake_minimum_required(VERSION 3.0.0)
 
-include(${CMAKE_SOURCE_DIR}/version.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/version.cmake)
 
 set(ORV_BUILD_STATIC_LIB_DEFAULT ON)
 set(ORV_BUILD_SHARED_LIB_DEFAULT ON)
@@ -154,10 +154,10 @@ if (ORV_BUILD_QT_CLIENT)
   endforeach ()
 endif ()
 
-include_directories(${CMAKE_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 set(libopenrv_thirdparty_SRCS
-  ${CMAKE_SOURCE_DIR}/thirdparty/libtomcrypt/des.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt/des.c
 )
 
 set(libopenrv_mbedtls_SRCS)
@@ -208,30 +208,37 @@ set(libopenrv_SRCS
 # files into a single target.
 # it is meant to be used by other cmake targets only and produces no library output by itself.
 add_library(openrv_object OBJECT ${libopenrv_SRCS})
-target_include_directories(openrv_object SYSTEM PRIVATE ${CMAKE_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-target_include_directories(openrv_object PUBLIC ${CMAKE_SOURCE_DIR}/libopenrv/public ${CMAKE_BINARY_DIR}/libopenrv/public)
+target_include_directories(openrv_object SYSTEM PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
+target_include_directories(openrv_object PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public)
 
 # cmake object libraries are currently not allowed to link to anything (apparently this is a cmake
 # todo). so we track the dependencies in a separate variable and the individual targets need to link
 # to them explicitly.
-set(libopenrv_object_libraries ${MBEDTLS_LIBRARIES} ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
+set(libopenrv_object_LIBRARIES ${MBEDTLS_LIBRARIES} ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
+
+# provide libopenrv_object_LIBRARIES to the parent scope, in case this CMakeLists.txt file is not
+# the toplevel file (used by the android library project)
+get_directory_property(cmake_parent_directory PARENT_DIRECTORY)
+if (cmake_parent_directory)
+  set(libopenrv_object_LIBRARIES ${libopenrv_object_LIBRARIES} PARENT_SCOPE)
+endif ()
 
 if (ORV_BUILD_STATIC_LIB)
   add_library(openrv STATIC $<TARGET_OBJECTS:openrv_object>)
 endif ()
 if (ORV_BUILD_SHARED_LIB)
   add_library(openrv_shared SHARED $<TARGET_OBJECTS:openrv_object>)
-  target_link_libraries(openrv_shared ${libopenrv_object_libraries})
+  target_link_libraries(openrv_shared ${libopenrv_object_LIBRARIES})
 endif ()
 
-configure_file(${CMAKE_SOURCE_DIR}/libopenrv/public/libopenrv/orv_version.h.cmake ${CMAKE_BINARY_DIR}/libopenrv/public/libopenrv/orv_version.h)
-configure_file(${CMAKE_SOURCE_DIR}/libopenrv/public/libopenrv/orv_config.h.cmake ${CMAKE_BINARY_DIR}/libopenrv/public/libopenrv/orv_config.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public/libopenrv/orv_version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv/orv_version.h)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public/libopenrv/orv_config.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv/orv_config.h)
 
 if (ORV_BUILD_CMDLINE)
   add_executable(openrv_cmdline cmdline/main.cpp $<TARGET_OBJECTS:openrv_object>)
-  target_include_directories(openrv_cmdline PUBLIC ${CMAKE_SOURCE_DIR}/libopenrv/public ${CMAKE_BINARY_DIR}/libopenrv/public)
+  target_include_directories(openrv_cmdline PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public)
   target_link_libraries(openrv_cmdline
-    ${libopenrv_object_libraries}
+    ${libopenrv_object_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
   )
 endif ()
@@ -272,12 +279,12 @@ if (ORV_BUILD_QT_CLIENT)
   #)
   add_executable(openrvclient ${openrvclient_qt_srcs} ${openrvclient_qt_hdrs} $<TARGET_OBJECTS:openrv_object>)
   target_link_libraries(openrvclient
-    ${libopenrv_object_libraries}
+    ${libopenrv_object_LIBRARIES}
   )
   target_include_directories(openrvclient
     PUBLIC
-    ${CMAKE_SOURCE_DIR}/libopenrv/public
-    ${CMAKE_BINARY_DIR}/libopenrv/public
+    ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public
+    ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public
   )
   target_include_directories(openrvclient
     SYSTEM
