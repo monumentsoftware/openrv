@@ -298,6 +298,9 @@ orv_context_t* orv_init(const orv_config_t* cfg)
 
     orv_context_t* ctx = new orv_context_t();
     orv_config_copy(&ctx->mConfig, cfg);
+    for (int i = 0; i < ORV_USER_DATA_COUNT; i++) {
+        orv_set_user_data(ctx, (orv_user_data_t)i, cfg->mUserData[i]);
+    }
     orv_error_t error;
     ORV_DEBUG(ctx, "orv_init()");
     if (ctx->mConfig.mEventCallback == orv_event_callback_polling) {

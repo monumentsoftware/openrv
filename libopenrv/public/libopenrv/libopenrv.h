@@ -422,8 +422,8 @@ typedef struct orv_connection_info_t
     uint16_t mFramebufferWidth;
     uint16_t mFramebufferHeight;
     char mDesktopName[ORV_MAX_DESKTOP_NAME_LENGTH + 1];
-    uint32_t mReceivedBytes;
-    uint32_t mSentBytes;
+    uint64_t mReceivedBytes;
+    uint64_t mSentBytes;
 } orv_connection_info_t;
 
 /**
@@ -592,6 +592,12 @@ typedef struct orv_config_t
      * if otherwise ignoring it (see also @ref orv_event_destroy()).
      **/
     orv_event_callback_t mEventCallback;
+
+    /**
+     * Used to set up userdata at startup to have it in place when ORV_EVENT_THREAD_STARTED
+     * is fired.
+     **/
+    void* mUserData[ORV_USER_DATA_COUNT];
 } orv_config_t;
 
 void orv_config_zero(orv_config_t* cfg);
