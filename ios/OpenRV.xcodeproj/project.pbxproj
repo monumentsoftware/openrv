@@ -1,0 +1,604 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA52EF582074057C00D045FB /* OpenRV.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EF562074057C00D045FB /* OpenRV.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52EFFE2074074200D045FB /* XF86keysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEC2074074100D045FB /* XF86keysym.h */; };
+		DA52EFFF2074074200D045FB /* reader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFED2074074100D045FB /* reader.h */; };
+		DA52F0002074074200D045FB /* securitytypehandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFEE2074074100D045FB /* securitytypehandler.cpp */; };
+		DA52F0012074074200D045FB /* securitytypehandler.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEF2074074100D045FB /* securitytypehandler.h */; };
+		DA52F0022074074200D045FB /* threadnotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF02074074100D045FB /* threadnotifier.cpp */; };
+		DA52F0032074074200D045FB /* rectdataparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF12074074100D045FB /* rectdataparser.h */; };
+		DA52F0042074074200D045FB /* vncdes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF22074074100D045FB /* vncdes.cpp */; };
+		DA52F0052074074200D045FB /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF32074074100D045FB /* socket.cpp */; };
+		DA52F0072074074200D045FB /* rfb3xhandshake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF52074074200D045FB /* rfb3xhandshake.cpp */; };
+		DA52F0082074074200D045FB /* rfb3xhandshake.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF62074074200D045FB /* rfb3xhandshake.h */; };
+		DA52F0092074074200D045FB /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF72074074200D045FB /* utils.h */; };
+		DA52F00A2074074200D045FB /* writer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF82074074200D045FB /* writer.h */; };
+		DA52F00B2074074200D045FB /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF92074074200D045FB /* socket.h */; };
+		DA52F00C2074074200D045FB /* threadnotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFA2074074200D045FB /* threadnotifier.h */; };
+		DA52F00D2074074200D045FB /* vncdes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFB2074074200D045FB /* vncdes.h */; };
+		DA52F00E2074074200D045FB /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFFC2074074200D045FB /* utils.cpp */; };
+		DA52F00F2074074200D045FB /* rfbtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFD2074074200D045FB /* rfbtypes.h */; };
+		DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0112074076100D045FB /* orv_qtkey_to_xkeysym.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F0182074076100D045FB /* orv_latencytesterclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0122074076100D045FB /* orv_latencytesterclient.h */; };
+		DA52F0192074076100D045FB /* libopenrv.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0132074076100D045FB /* libopenrv.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F01A2074076100D045FB /* orv_error.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0142074076100D045FB /* orv_error.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F01B2074076100D045FB /* orv_errorcodes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0152074076100D045FB /* orv_errorcodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F01C2074076100D045FB /* orv_logging.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0162074076100D045FB /* orv_logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F03520740B2D00D045FB /* eventqueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F01E20740B2500D045FB /* eventqueue.cpp */; };
+		DA52F03620740B2D00D045FB /* key_xkeygen.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F01F20740B2500D045FB /* key_xkeygen.h */; };
+		DA52F03720740B2D00D045FB /* libopenrv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02020740B2500D045FB /* libopenrv.cpp */; };
+		DA52F03920740B2D00D045FB /* messageparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02220740B2600D045FB /* messageparser.h */; };
+		DA52F03B20740B2D00D045FB /* orv_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02420740B2600D045FB /* orv_error.cpp */; };
+		DA52F03C20740B2D00D045FB /* key_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02520740B2600D045FB /* key_android.cpp */; };
+		DA52F03D20740B2D00D045FB /* orv_latencytesterclient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02620740B2600D045FB /* orv_latencytesterclient.cpp */; };
+		DA52F03E20740B2D00D045FB /* orvvncclient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02720740B2700D045FB /* orvvncclient.cpp */; };
+		DA52F03F20740B2D00D045FB /* orvvncclientshareddata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02820740B2700D045FB /* orvvncclientshareddata.cpp */; };
+		DA52F04020740B2D00D045FB /* orvvncclientshareddata.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02920740B2700D045FB /* orvvncclientshareddata.h */; };
+		DA52F04120740B2D00D045FB /* orvclientdefines.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02A20740B2700D045FB /* orvclientdefines.h */; };
+		DA52F04220740B2D00D045FB /* keysymdef.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02B20740B2800D045FB /* keysymdef.h */; };
+		DA52F04320740B2D00D045FB /* orv_logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02C20740B2A00D045FB /* orv_logging.cpp */; };
+		DA52F04420740B2D00D045FB /* orv_context.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02D20740B2B00D045FB /* orv_context.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F04520740B2D00D045FB /* keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02E20740B2C00D045FB /* keys.cpp */; };
+		DA52F04620740B2D00D045FB /* eventqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02F20740B2C00D045FB /* eventqueue.h */; };
+		DA52F04720740B2D00D045FB /* keys.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03020740B2C00D045FB /* keys.h */; };
+		DA52F04820740B2D00D045FB /* messageparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F03120740B2C00D045FB /* messageparser.cpp */; };
+		DA52F04920740B2D00D045FB /* orvvncclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03220740B2D00D045FB /* orvvncclient.h */; };
+		DA52F05420740C4100D045FB /* tomcrypt_argchk.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04C20740C4000D045FB /* tomcrypt_argchk.h */; };
+		DA52F05520740C4100D045FB /* tomcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04D20740C4000D045FB /* tomcrypt.h */; };
+		DA52F05620740C4100D045FB /* crypt_argchk.c in Sources */ = {isa = PBXBuildFile; fileRef = DA52F04E20740C4000D045FB /* crypt_argchk.c */; };
+		DA52F05720740C4100D045FB /* tomcrypt_custom.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04F20740C4000D045FB /* tomcrypt_custom.h */; };
+		DA52F05820740C4100D045FB /* tomcrypt_cfg.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05020740C4000D045FB /* tomcrypt_cfg.h */; };
+		DA52F05920740C4100D045FB /* tomcrypt_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05120740C4000D045FB /* tomcrypt_macros.h */; };
+		DA52F05A20740C4100D045FB /* des.c in Sources */ = {isa = PBXBuildFile; fileRef = DA52F05220740C4100D045FB /* des.c */; };
+		DA52F05B20740C4100D045FB /* tomcrypt_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05320740C4100D045FB /* tomcrypt_cipher.h */; };
+		DA52F05C20740C5400D045FB /* rectdataparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF42074074100D045FB /* rectdataparser.cpp */; };
+		DA52F05F20740C6A00D045FB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA52F05E20740C6A00D045FB /* libz.tbd */; };
+		DA52F06120740E2B00D045FB /* OpenRV.m in Sources */ = {isa = PBXBuildFile; fileRef = DA52F06020740E2B00D045FB /* OpenRV.m */; };
+		DA52F0A02075555A00D045FB /* orv_config.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F09E2075555A00D045FB /* orv_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F0A12075555A00D045FB /* orv_version.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F09F2075555A00D045FB /* orv_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DA52EF532074057C00D045FB /* OpenRV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenRV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA52EF562074057C00D045FB /* OpenRV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenRV.h; sourceTree = "<group>"; };
+		DA52EF572074057C00D045FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA52EFEC2074074100D045FB /* XF86keysym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XF86keysym.h; path = ../libopenrv/XF86keysym.h; sourceTree = "<group>"; };
+		DA52EFED2074074100D045FB /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = ../libopenrv/reader.h; sourceTree = "<group>"; };
+		DA52EFEE2074074100D045FB /* securitytypehandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = securitytypehandler.cpp; path = ../libopenrv/securitytypehandler.cpp; sourceTree = "<group>"; };
+		DA52EFEF2074074100D045FB /* securitytypehandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = securitytypehandler.h; path = ../libopenrv/securitytypehandler.h; sourceTree = "<group>"; };
+		DA52EFF02074074100D045FB /* threadnotifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = threadnotifier.cpp; path = ../libopenrv/threadnotifier.cpp; sourceTree = "<group>"; };
+		DA52EFF12074074100D045FB /* rectdataparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rectdataparser.h; path = ../libopenrv/rectdataparser.h; sourceTree = "<group>"; };
+		DA52EFF22074074100D045FB /* vncdes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vncdes.cpp; path = ../libopenrv/vncdes.cpp; sourceTree = "<group>"; };
+		DA52EFF32074074100D045FB /* socket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = socket.cpp; path = ../libopenrv/socket.cpp; sourceTree = "<group>"; };
+		DA52EFF42074074100D045FB /* rectdataparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rectdataparser.cpp; path = ../libopenrv/rectdataparser.cpp; sourceTree = "<group>"; };
+		DA52EFF52074074200D045FB /* rfb3xhandshake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = rfb3xhandshake.cpp; path = ../libopenrv/rfb3xhandshake.cpp; sourceTree = "<group>"; };
+		DA52EFF62074074200D045FB /* rfb3xhandshake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rfb3xhandshake.h; path = ../libopenrv/rfb3xhandshake.h; sourceTree = "<group>"; };
+		DA52EFF72074074200D045FB /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utils.h; path = ../libopenrv/utils.h; sourceTree = "<group>"; };
+		DA52EFF82074074200D045FB /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = writer.h; path = ../libopenrv/writer.h; sourceTree = "<group>"; };
+		DA52EFF92074074200D045FB /* socket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = socket.h; path = ../libopenrv/socket.h; sourceTree = "<group>"; };
+		DA52EFFA2074074200D045FB /* threadnotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = threadnotifier.h; path = ../libopenrv/threadnotifier.h; sourceTree = "<group>"; };
+		DA52EFFB2074074200D045FB /* vncdes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vncdes.h; path = ../libopenrv/vncdes.h; sourceTree = "<group>"; };
+		DA52EFFC2074074200D045FB /* utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = utils.cpp; path = ../libopenrv/utils.cpp; sourceTree = "<group>"; };
+		DA52EFFD2074074200D045FB /* rfbtypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = rfbtypes.h; path = ../libopenrv/rfbtypes.h; sourceTree = "<group>"; };
+		DA52F0112074076100D045FB /* orv_qtkey_to_xkeysym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_qtkey_to_xkeysym.h; path = ../libopenrv/public/libopenrv/orv_qtkey_to_xkeysym.h; sourceTree = "<group>"; };
+		DA52F0122074076100D045FB /* orv_latencytesterclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_latencytesterclient.h; path = ../libopenrv/public/libopenrv/orv_latencytesterclient.h; sourceTree = "<group>"; };
+		DA52F0132074076100D045FB /* libopenrv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = libopenrv.h; path = ../libopenrv/public/libopenrv/libopenrv.h; sourceTree = "<group>"; };
+		DA52F0142074076100D045FB /* orv_error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_error.h; path = ../libopenrv/public/libopenrv/orv_error.h; sourceTree = "<group>"; };
+		DA52F0152074076100D045FB /* orv_errorcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_errorcodes.h; path = ../libopenrv/public/libopenrv/orv_errorcodes.h; sourceTree = "<group>"; };
+		DA52F0162074076100D045FB /* orv_logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_logging.h; path = ../libopenrv/public/libopenrv/orv_logging.h; sourceTree = "<group>"; };
+		DA52F01E20740B2500D045FB /* eventqueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = eventqueue.cpp; path = ../libopenrv/eventqueue.cpp; sourceTree = "<group>"; };
+		DA52F01F20740B2500D045FB /* key_xkeygen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = key_xkeygen.h; path = ../libopenrv/key_xkeygen.h; sourceTree = "<group>"; };
+		DA52F02020740B2500D045FB /* libopenrv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libopenrv.cpp; path = ../libopenrv/libopenrv.cpp; sourceTree = "<group>"; };
+		DA52F02220740B2600D045FB /* messageparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = messageparser.h; path = ../libopenrv/messageparser.h; sourceTree = "<group>"; };
+		DA52F02420740B2600D045FB /* orv_error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = orv_error.cpp; path = ../libopenrv/orv_error.cpp; sourceTree = "<group>"; };
+		DA52F02520740B2600D045FB /* key_android.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = key_android.cpp; path = ../libopenrv/key_android.cpp; sourceTree = "<group>"; };
+		DA52F02620740B2600D045FB /* orv_latencytesterclient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = orv_latencytesterclient.cpp; path = ../libopenrv/orv_latencytesterclient.cpp; sourceTree = "<group>"; };
+		DA52F02720740B2700D045FB /* orvvncclient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = orvvncclient.cpp; path = ../libopenrv/orvvncclient.cpp; sourceTree = "<group>"; };
+		DA52F02820740B2700D045FB /* orvvncclientshareddata.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = orvvncclientshareddata.cpp; path = ../libopenrv/orvvncclientshareddata.cpp; sourceTree = "<group>"; };
+		DA52F02920740B2700D045FB /* orvvncclientshareddata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orvvncclientshareddata.h; path = ../libopenrv/orvvncclientshareddata.h; sourceTree = "<group>"; };
+		DA52F02A20740B2700D045FB /* orvclientdefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orvclientdefines.h; path = ../libopenrv/orvclientdefines.h; sourceTree = "<group>"; };
+		DA52F02B20740B2800D045FB /* keysymdef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keysymdef.h; path = ../libopenrv/keysymdef.h; sourceTree = "<group>"; };
+		DA52F02C20740B2A00D045FB /* orv_logging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = orv_logging.cpp; path = ../libopenrv/orv_logging.cpp; sourceTree = "<group>"; };
+		DA52F02D20740B2B00D045FB /* orv_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_context.h; path = ../libopenrv/orv_context.h; sourceTree = "<group>"; };
+		DA52F02E20740B2C00D045FB /* keys.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = keys.cpp; path = ../libopenrv/keys.cpp; sourceTree = "<group>"; };
+		DA52F02F20740B2C00D045FB /* eventqueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = eventqueue.h; path = ../libopenrv/eventqueue.h; sourceTree = "<group>"; };
+		DA52F03020740B2C00D045FB /* keys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = keys.h; path = ../libopenrv/keys.h; sourceTree = "<group>"; };
+		DA52F03120740B2C00D045FB /* messageparser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = messageparser.cpp; path = ../libopenrv/messageparser.cpp; sourceTree = "<group>"; };
+		DA52F03220740B2D00D045FB /* orvvncclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orvvncclient.h; path = ../libopenrv/orvvncclient.h; sourceTree = "<group>"; };
+		DA52F04C20740C4000D045FB /* tomcrypt_argchk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt_argchk.h; path = ../thirdparty/libtomcrypt/tomcrypt_argchk.h; sourceTree = "<group>"; };
+		DA52F04D20740C4000D045FB /* tomcrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt.h; path = ../thirdparty/libtomcrypt/tomcrypt.h; sourceTree = "<group>"; };
+		DA52F04E20740C4000D045FB /* crypt_argchk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crypt_argchk.c; path = ../thirdparty/libtomcrypt/crypt_argchk.c; sourceTree = "<group>"; };
+		DA52F04F20740C4000D045FB /* tomcrypt_custom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt_custom.h; path = ../thirdparty/libtomcrypt/tomcrypt_custom.h; sourceTree = "<group>"; };
+		DA52F05020740C4000D045FB /* tomcrypt_cfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt_cfg.h; path = ../thirdparty/libtomcrypt/tomcrypt_cfg.h; sourceTree = "<group>"; };
+		DA52F05120740C4000D045FB /* tomcrypt_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt_macros.h; path = ../thirdparty/libtomcrypt/tomcrypt_macros.h; sourceTree = "<group>"; };
+		DA52F05220740C4100D045FB /* des.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = des.c; path = ../thirdparty/libtomcrypt/des.c; sourceTree = "<group>"; };
+		DA52F05320740C4100D045FB /* tomcrypt_cipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tomcrypt_cipher.h; path = ../thirdparty/libtomcrypt/tomcrypt_cipher.h; sourceTree = "<group>"; };
+		DA52F05E20740C6A00D045FB /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		DA52F06020740E2B00D045FB /* OpenRV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenRV.m; sourceTree = "<group>"; };
+		DA52F09E2075555A00D045FB /* orv_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_config.h; path = ../libopenrv/public/libopenrv/orv_config.h; sourceTree = "<group>"; };
+		DA52F09F2075555A00D045FB /* orv_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_version.h; path = ../libopenrv/public/libopenrv/orv_version.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DA52EF4F2074057C00D045FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA52F05F20740C6A00D045FB /* libz.tbd in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA52EF492074057C00D045FB = {
+			isa = PBXGroup;
+			children = (
+				DA52F04B20740C2700D045FB /* tomcrypt */,
+				DA52F0102074074900D045FB /* public */,
+				DA52EFEB2074073300D045FB /* lib */,
+				DA52EF552074057C00D045FB /* openrv */,
+				DA52EF542074057C00D045FB /* Products */,
+				DA52F05D20740C6A00D045FB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		DA52EF542074057C00D045FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA52EF532074057C00D045FB /* OpenRV.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DA52EF552074057C00D045FB /* openrv */ = {
+			isa = PBXGroup;
+			children = (
+				DA52EF562074057C00D045FB /* OpenRV.h */,
+				DA52EF572074057C00D045FB /* Info.plist */,
+				DA52F06020740E2B00D045FB /* OpenRV.m */,
+			);
+			path = openrv;
+			sourceTree = "<group>";
+		};
+		DA52EFEB2074073300D045FB /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DA52F01E20740B2500D045FB /* eventqueue.cpp */,
+				DA52F02F20740B2C00D045FB /* eventqueue.h */,
+				DA52F02520740B2600D045FB /* key_android.cpp */,
+				DA52F01F20740B2500D045FB /* key_xkeygen.h */,
+				DA52F02E20740B2C00D045FB /* keys.cpp */,
+				DA52F03020740B2C00D045FB /* keys.h */,
+				DA52F02B20740B2800D045FB /* keysymdef.h */,
+				DA52F02020740B2500D045FB /* libopenrv.cpp */,
+				DA52F03120740B2C00D045FB /* messageparser.cpp */,
+				DA52F02220740B2600D045FB /* messageparser.h */,
+				DA52F02D20740B2B00D045FB /* orv_context.h */,
+				DA52F02420740B2600D045FB /* orv_error.cpp */,
+				DA52F02620740B2600D045FB /* orv_latencytesterclient.cpp */,
+				DA52F02C20740B2A00D045FB /* orv_logging.cpp */,
+				DA52F02A20740B2700D045FB /* orvclientdefines.h */,
+				DA52F02720740B2700D045FB /* orvvncclient.cpp */,
+				DA52F03220740B2D00D045FB /* orvvncclient.h */,
+				DA52F02820740B2700D045FB /* orvvncclientshareddata.cpp */,
+				DA52F02920740B2700D045FB /* orvvncclientshareddata.h */,
+				DA52EFED2074074100D045FB /* reader.h */,
+				DA52EFF42074074100D045FB /* rectdataparser.cpp */,
+				DA52EFF12074074100D045FB /* rectdataparser.h */,
+				DA52EFF52074074200D045FB /* rfb3xhandshake.cpp */,
+				DA52EFF62074074200D045FB /* rfb3xhandshake.h */,
+				DA52EFFD2074074200D045FB /* rfbtypes.h */,
+				DA52EFEE2074074100D045FB /* securitytypehandler.cpp */,
+				DA52EFEF2074074100D045FB /* securitytypehandler.h */,
+				DA52EFF32074074100D045FB /* socket.cpp */,
+				DA52EFF92074074200D045FB /* socket.h */,
+				DA52EFF02074074100D045FB /* threadnotifier.cpp */,
+				DA52EFFA2074074200D045FB /* threadnotifier.h */,
+				DA52EFFC2074074200D045FB /* utils.cpp */,
+				DA52EFF72074074200D045FB /* utils.h */,
+				DA52EFF22074074100D045FB /* vncdes.cpp */,
+				DA52EFFB2074074200D045FB /* vncdes.h */,
+				DA52EFF82074074200D045FB /* writer.h */,
+				DA52EFEC2074074100D045FB /* XF86keysym.h */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		DA52F0102074074900D045FB /* public */ = {
+			isa = PBXGroup;
+			children = (
+				DA52F09E2075555A00D045FB /* orv_config.h */,
+				DA52F09F2075555A00D045FB /* orv_version.h */,
+				DA52F0132074076100D045FB /* libopenrv.h */,
+				DA52F0142074076100D045FB /* orv_error.h */,
+				DA52F0152074076100D045FB /* orv_errorcodes.h */,
+				DA52F0122074076100D045FB /* orv_latencytesterclient.h */,
+				DA52F0162074076100D045FB /* orv_logging.h */,
+				DA52F0112074076100D045FB /* orv_qtkey_to_xkeysym.h */,
+			);
+			name = public;
+			sourceTree = "<group>";
+		};
+		DA52F04B20740C2700D045FB /* tomcrypt */ = {
+			isa = PBXGroup;
+			children = (
+				DA52F04E20740C4000D045FB /* crypt_argchk.c */,
+				DA52F05220740C4100D045FB /* des.c */,
+				DA52F04C20740C4000D045FB /* tomcrypt_argchk.h */,
+				DA52F05020740C4000D045FB /* tomcrypt_cfg.h */,
+				DA52F05320740C4100D045FB /* tomcrypt_cipher.h */,
+				DA52F04F20740C4000D045FB /* tomcrypt_custom.h */,
+				DA52F05120740C4000D045FB /* tomcrypt_macros.h */,
+				DA52F04D20740C4000D045FB /* tomcrypt.h */,
+			);
+			name = tomcrypt;
+			sourceTree = "<group>";
+		};
+		DA52F05D20740C6A00D045FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DA52F05E20740C6A00D045FB /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		DA52EF502074057C00D045FB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */,
+				DA52F00B2074074200D045FB /* socket.h in Headers */,
+				DA52F0A12075555A00D045FB /* orv_version.h in Headers */,
+				DA52F01A2074076100D045FB /* orv_error.h in Headers */,
+				DA52F04420740B2D00D045FB /* orv_context.h in Headers */,
+				DA52F01C2074076100D045FB /* orv_logging.h in Headers */,
+				DA52F0192074076100D045FB /* libopenrv.h in Headers */,
+				DA52F0A02075555A00D045FB /* orv_config.h in Headers */,
+				DA52F01B2074076100D045FB /* orv_errorcodes.h in Headers */,
+				DA52F04220740B2D00D045FB /* keysymdef.h in Headers */,
+				DA52EFFE2074074200D045FB /* XF86keysym.h in Headers */,
+				DA52F04020740B2D00D045FB /* orvvncclientshareddata.h in Headers */,
+				DA52F04620740B2D00D045FB /* eventqueue.h in Headers */,
+				DA52F03620740B2D00D045FB /* key_xkeygen.h in Headers */,
+				DA52F0032074074200D045FB /* rectdataparser.h in Headers */,
+				DA52F05520740C4100D045FB /* tomcrypt.h in Headers */,
+				DA52F03920740B2D00D045FB /* messageparser.h in Headers */,
+				DA52F05920740C4100D045FB /* tomcrypt_macros.h in Headers */,
+				DA52F05B20740C4100D045FB /* tomcrypt_cipher.h in Headers */,
+				DA52F04720740B2D00D045FB /* keys.h in Headers */,
+				DA52F04120740B2D00D045FB /* orvclientdefines.h in Headers */,
+				DA52F0092074074200D045FB /* utils.h in Headers */,
+				DA52F00A2074074200D045FB /* writer.h in Headers */,
+				DA52F0082074074200D045FB /* rfb3xhandshake.h in Headers */,
+				DA52F00C2074074200D045FB /* threadnotifier.h in Headers */,
+				DA52EF582074057C00D045FB /* OpenRV.h in Headers */,
+				DA52F04920740B2D00D045FB /* orvvncclient.h in Headers */,
+				DA52EFFF2074074200D045FB /* reader.h in Headers */,
+				DA52F00D2074074200D045FB /* vncdes.h in Headers */,
+				DA52F0012074074200D045FB /* securitytypehandler.h in Headers */,
+				DA52F05420740C4100D045FB /* tomcrypt_argchk.h in Headers */,
+				DA52F05820740C4100D045FB /* tomcrypt_cfg.h in Headers */,
+				DA52F05720740C4100D045FB /* tomcrypt_custom.h in Headers */,
+				DA52F00F2074074200D045FB /* rfbtypes.h in Headers */,
+				DA52F0182074076100D045FB /* orv_latencytesterclient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		DA52EF522074057C00D045FB /* OpenRV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DA52EF5B2074057C00D045FB /* Build configuration list for PBXNativeTarget "OpenRV" */;
+			buildPhases = (
+				DA52F0912074B72700D045FB /* ShellScript */,
+				DA52EF4E2074057C00D045FB /* Sources */,
+				DA52EF4F2074057C00D045FB /* Frameworks */,
+				DA52EF502074057C00D045FB /* Headers */,
+				DA52EF512074057C00D045FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenRV;
+			productName = openrv;
+			productReference = DA52EF532074057C00D045FB /* OpenRV.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DA52EF4A2074057C00D045FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Christoph Möde";
+				TargetAttributes = {
+					DA52EF522074057C00D045FB = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = DA52EF4D2074057C00D045FB /* Build configuration list for PBXProject "OpenRV" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DA52EF492074057C00D045FB;
+			productRefGroup = DA52EF542074057C00D045FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DA52EF522074057C00D045FB /* OpenRV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DA52EF512074057C00D045FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DA52F0912074B72700D045FB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$SRCROOT/genfiles.sh\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DA52EF4E2074057C00D045FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA52F04820740B2D00D045FB /* messageparser.cpp in Sources */,
+				DA52F0052074074200D045FB /* socket.cpp in Sources */,
+				DA52F03B20740B2D00D045FB /* orv_error.cpp in Sources */,
+				DA52F0002074074200D045FB /* securitytypehandler.cpp in Sources */,
+				DA52F0072074074200D045FB /* rfb3xhandshake.cpp in Sources */,
+				DA52F06120740E2B00D045FB /* OpenRV.m in Sources */,
+				DA52F0022074074200D045FB /* threadnotifier.cpp in Sources */,
+				DA52F03D20740B2D00D045FB /* orv_latencytesterclient.cpp in Sources */,
+				DA52F03F20740B2D00D045FB /* orvvncclientshareddata.cpp in Sources */,
+				DA52F03720740B2D00D045FB /* libopenrv.cpp in Sources */,
+				DA52F05C20740C5400D045FB /* rectdataparser.cpp in Sources */,
+				DA52F04520740B2D00D045FB /* keys.cpp in Sources */,
+				DA52F0042074074200D045FB /* vncdes.cpp in Sources */,
+				DA52F05620740C4100D045FB /* crypt_argchk.c in Sources */,
+				DA52F05A20740C4100D045FB /* des.c in Sources */,
+				DA52F03E20740B2D00D045FB /* orvvncclient.cpp in Sources */,
+				DA52F03C20740B2D00D045FB /* key_android.cpp in Sources */,
+				DA52F04320740B2D00D045FB /* orv_logging.cpp in Sources */,
+				DA52F03520740B2D00D045FB /* eventqueue.cpp in Sources */,
+				DA52F00E2074074200D045FB /* utils.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DA52EF592074057C00D045FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DA52EF5A2074057C00D045FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DA52EF5C2074057C00D045FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QB6BN2XX56;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/..",
+					"${PROJECT_DIR}/../libopenrv/public",
+				);
+				INFOPLIST_FILE = openrv/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.monument-software.openrv";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DA52EF5D2074057C00D045FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QB6BN2XX56;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/..",
+					"${PROJECT_DIR}/../libopenrv/public",
+				);
+				INFOPLIST_FILE = openrv/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.monument-software.openrv";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DA52EF4D2074057C00D045FB /* Build configuration list for PBXProject "OpenRV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA52EF592074057C00D045FB /* Debug */,
+				DA52EF5A2074057C00D045FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DA52EF5B2074057C00D045FB /* Build configuration list for PBXNativeTarget "OpenRV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA52EF5C2074057C00D045FB /* Debug */,
+				DA52EF5D2074057C00D045FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DA52EF4A2074057C00D045FB /* Project object */;
+}
