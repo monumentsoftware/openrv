@@ -219,6 +219,7 @@ set(libopenrv_SRCS
 # files into a single target.
 # it is meant to be used by other cmake targets only and produces no library output by itself.
 add_library(openrv_object OBJECT ${libopenrv_SRCS})
+set_target_properties(openrv_object PROPERTIES POSITION_INDEPENDENT_CODE True)
 target_include_directories(openrv_object SYSTEM PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
 target_include_directories(openrv_object PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public)
 
