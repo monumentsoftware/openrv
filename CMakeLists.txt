@@ -104,19 +104,15 @@ find_package(OpenSSL)
 # mbedtls
 find_path(MBEDTLS_INCLUDE_DIRS
   mbedtls/rsa.h
-  PATHS $ENV{HOME}/vcs/extern/mbedtls/include
 )
 find_library(MBEDTLS_LIBRARY_TLS
   mbedtls
-  PATHS $ENV{HOME}/vcs/extern/mbedtls/build/library
 )
 find_library(MBEDTLS_LIBRARY_CRYPTO
   mbedcrypto
-  PATHS $ENV{HOME}/vcs/extern/mbedtls/build/library
 )
 find_library(MBEDTLS_LIBRARY_X509
   mbedx509
-  PATHS $ENV{HOME}/vcs/extern/mbedtls/build/library
 )
 set(MBEDTLS_LIBRARIES ${MBEDTLS_LIBRARY_TLS} ${MBEDTLS_LIBRARY_X509} ${MBEDTLS_LIBRARY_CRYPTO} )
 if (NOT MBEDTLS_INCLUDE_DIRS OR NOT MBEDTLS_LIBRARY_TLS OR NOT MBEDTLS_LIBRARY_CRYPTO OR NOT MBEDTLS_LIBRARY_X509)
