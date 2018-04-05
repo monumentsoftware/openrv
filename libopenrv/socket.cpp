@@ -552,7 +552,7 @@ bool Socket::makeSocketAndConnectBlockingTo(const char* hostName, uint16_t port,
     }
 
     struct sockaddr_storage serverAddr;
-    size_t serverAddrLen = 0;
+    socklen_t serverAddrLen = 0;
     for (struct addrinfo* addr = firstInfo; addr; addr = addr->ai_next) {
         if (addr->ai_family != AF_INET && addr->ai_family != AF_INET6) {
             ORV_DEBUG(mContext, "Ignoring addrinfo with unexpected ai_family %x", (int)addr->ai_family);
