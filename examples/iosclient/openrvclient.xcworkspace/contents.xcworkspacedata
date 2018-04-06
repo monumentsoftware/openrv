@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OpenRVClient.xcodeproj">
+      location = "container:OpenRVClient.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/christophmoede/dev/generic/openrv/ios/OpenRV.xcodeproj">
+      location = "container:/Users/christophmoede/dev/generic/openrv/ios/OpenRV.xcodeproj">
    </FileRef>
 </Workspace>
