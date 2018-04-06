@@ -5,6 +5,6 @@
       location = "container:OpenRVClient.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:/Users/christophmoede/dev/generic/openrv/ios/OpenRV.xcodeproj">
+      location = "container:../openrv/ios/OpenRV.xcodeproj">
    </FileRef>
 </Workspace>
