@@ -1,0 +1,339 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */; };
+		DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5C2077BA50007AC0DC /* RemoteView.m */; };
+		DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5D2077BA50007AC0DC /* ViewController.m */; };
+		DA6A1F662077BA51007AC0DC /* FramebufferLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */; };
+		DA6A1F672077BA51007AC0DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5F2077BA50007AC0DC /* main.m */; };
+		DA6A1F682077BA51007AC0DC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F622077BA51007AC0DC /* Info.plist */; };
+		DA6A1F6A2077BA8E007AC0DC /* OpenRV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A1F692077BA8E007AC0DC /* OpenRV.framework */; };
+		DA6A1F6B2077BA8E007AC0DC /* OpenRV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A1F692077BA8E007AC0DC /* OpenRV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DA6A1F6E2077BAF2007AC0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DA6A1F6C2077BA8E007AC0DC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DA6A1F6B2077BA8E007AC0DC /* OpenRV.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenRVClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA6A1F592077BA50007AC0DC /* FramebufferLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FramebufferLayer.h; path = opervclient/FramebufferLayer.h; sourceTree = "<group>"; };
+		DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = opervclient/AppDelegate.h; sourceTree = "<group>"; };
+		DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = opervclient/AppDelegate.m; sourceTree = "<group>"; };
+		DA6A1F5C2077BA50007AC0DC /* RemoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteView.m; path = opervclient/RemoteView.m; sourceTree = "<group>"; };
+		DA6A1F5D2077BA50007AC0DC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = opervclient/ViewController.m; sourceTree = "<group>"; };
+		DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FramebufferLayer.m; path = opervclient/FramebufferLayer.m; sourceTree = "<group>"; };
+		DA6A1F5F2077BA50007AC0DC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = opervclient/main.m; sourceTree = "<group>"; };
+		DA6A1F602077BA50007AC0DC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = opervclient/ViewController.h; sourceTree = "<group>"; };
+		DA6A1F612077BA51007AC0DC /* RemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteView.h; path = opervclient/RemoteView.h; sourceTree = "<group>"; };
+		DA6A1F622077BA51007AC0DC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = opervclient/Info.plist; sourceTree = "<group>"; };
+		DA6A1F692077BA8E007AC0DC /* OpenRV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenRV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = opervclient/Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DAE6207D2077AF080013B811 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6A1F6A2077BA8E007AC0DC /* OpenRV.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DA6A1F582077BA3F007AC0DC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */,
+				DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */,
+				DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */,
+				DA6A1F592077BA50007AC0DC /* FramebufferLayer.h */,
+				DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */,
+				DA6A1F622077BA51007AC0DC /* Info.plist */,
+				DA6A1F5F2077BA50007AC0DC /* main.m */,
+				DA6A1F612077BA51007AC0DC /* RemoteView.h */,
+				DA6A1F5C2077BA50007AC0DC /* RemoteView.m */,
+				DA6A1F602077BA50007AC0DC /* ViewController.h */,
+				DA6A1F5D2077BA50007AC0DC /* ViewController.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		DAE620772077AF080013B811 = {
+			isa = PBXGroup;
+			children = (
+				DA6A1F692077BA8E007AC0DC /* OpenRV.framework */,
+				DA6A1F582077BA3F007AC0DC /* src */,
+				DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DAE6207F2077AF080013B811 /* OpenRVClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DAE620962077AF0B0013B811 /* Build configuration list for PBXNativeTarget "OpenRVClient" */;
+			buildPhases = (
+				DAE6207C2077AF080013B811 /* Sources */,
+				DAE6207D2077AF080013B811 /* Frameworks */,
+				DAE6207E2077AF080013B811 /* Resources */,
+				DA6A1F6C2077BA8E007AC0DC /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenRVClient;
+			productName = OpenRVClient;
+			productReference = DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DAE620782077AF080013B811 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = "Christoph Möde";
+				TargetAttributes = {
+					DAE6207F2077AF080013B811 = {
+						CreatedOnToolsVersion = 9.3;
+					};
+				};
+			};
+			buildConfigurationList = DAE6207B2077AF080013B811 /* Build configuration list for PBXProject "OpenRVClient" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DAE620772077AF080013B811;
+			productRefGroup = DAE620772077AF080013B811;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DAE6207F2077AF080013B811 /* OpenRVClient */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DAE6207E2077AF080013B811 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6A1F6E2077BAF2007AC0DC /* Assets.xcassets in Resources */,
+				DA6A1F682077BA51007AC0DC /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DAE6207C2077AF080013B811 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DA6A1F672077BA51007AC0DC /* main.m in Sources */,
+				DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */,
+				DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */,
+				DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */,
+				DA6A1F662077BA51007AC0DC /* FramebufferLayer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DAE620942077AF0B0013B811 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DAE620952077AF0B0013B811 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DAE620972077AF0B0013B811 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB6BN2XX56;
+				INFOPLIST_FILE = "$(SRCROOT)/opervclient/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.monument-software.OpenRVClient";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DAE620982077AF0B0013B811 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QB6BN2XX56;
+				INFOPLIST_FILE = "$(SRCROOT)/opervclient/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "de.monument-software.OpenRVClient";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DAE6207B2077AF080013B811 /* Build configuration list for PBXProject "OpenRVClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE620942077AF0B0013B811 /* Debug */,
+				DAE620952077AF0B0013B811 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DAE620962077AF0B0013B811 /* Build configuration list for PBXNativeTarget "OpenRVClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DAE620972077AF0B0013B811 /* Debug */,
+				DAE620982077AF0B0013B811 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DAE620782077AF080013B811 /* Project object */;
+}

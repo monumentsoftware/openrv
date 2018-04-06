@@ -65,6 +65,16 @@
 		DA52F0A12075555A00D045FB /* orv_version.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F09F2075555A00D045FB /* orv_version.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DA6A1F552077B9FD007AC0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DA6A1F502077B9FD007AC0DC /* OpenRVClient.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DA6A1F532077B9FD007AC0DC;
+			remoteInfo = OpenRVClient;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		DA52EF532074057C00D045FB /* OpenRV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OpenRV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA52EF562074057C00D045FB /* OpenRV.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenRV.h; sourceTree = "<group>"; };
@@ -124,6 +134,7 @@
 		DA52F06020740E2B00D045FB /* OpenRV.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenRV.m; sourceTree = "<group>"; };
 		DA52F09E2075555A00D045FB /* orv_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_config.h; path = ../libopenrv/public/libopenrv/orv_config.h; sourceTree = "<group>"; };
 		DA52F09F2075555A00D045FB /* orv_version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = orv_version.h; path = ../libopenrv/public/libopenrv/orv_version.h; sourceTree = "<group>"; };
+		DA6A1F502077B9FD007AC0DC /* OpenRVClient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OpenRVClient.xcodeproj; path = ../examples/iosclient/OpenRVClient.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,9 +256,18 @@
 		DA52F05D20740C6A00D045FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DA6A1F502077B9FD007AC0DC /* OpenRVClient.xcodeproj */,
 				DA52F05E20740C6A00D045FB /* libz.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DA6A1F512077B9FD007AC0DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DA6A1F562077B9FD007AC0DC /* OpenRVClient.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,12 +361,28 @@
 			mainGroup = DA52EF492074057C00D045FB;
 			productRefGroup = DA52EF542074057C00D045FB /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DA6A1F512077B9FD007AC0DC /* Products */;
+					ProjectRef = DA6A1F502077B9FD007AC0DC /* OpenRVClient.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				DA52EF522074057C00D045FB /* OpenRV */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DA6A1F562077B9FD007AC0DC /* OpenRVClient.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OpenRVClient.app;
+			remoteRef = DA6A1F552077B9FD007AC0DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		DA52EF512074057C00D045FB /* Resources */ = {
