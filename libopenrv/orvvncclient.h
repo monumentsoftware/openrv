@@ -45,7 +45,8 @@ public:
 
     void setSharedAccess(bool shared);
     bool isSharedAccess() const;
-    bool connectToHost(const char* hostName, uint16_t port, const char* password, const struct orv_connect_options_t* options, orv_error_t* error = nullptr);
+    bool setCredentials(const char* user, const char* password);
+    bool connectToHost(const char* hostName, uint16_t port, const struct orv_connect_options_t* options, orv_error_t* error = nullptr);
     void disconnect();
     bool isConnected() const;
     void sendFramebufferUpdateRequest(bool incremental, uint16_t x, uint16_t y, uint16_t w, uint16_t h);

@@ -127,7 +127,13 @@ int main(int argc, char** argv)
     orv_error_t connectError;
     orv_connect_options_t connectOptions;
     orv_connect_options_default(&connectOptions);
-    if (orv_connect(orvContext, options.mHostName, options.mPort, options.mPassword, &connectOptions, &connectError) != 0) {
+    if (orv_set_credentials(orvContext, nullptr, options.mPassword)) {
+        fprintf(stderr, "Failed to set credentials");
+        fflush(stderr);
+        orv_destroy(orvContext);
+        return 1;
+    }
+    if (orv_connect(orvContext, options.mHostName, options.mPort, &connectOptions, &connectError) != 0) {
         fprintf(stderr, "Failed to start connecting to host '%s' on port %d\n  Error message: %s\n", options.mHostName, options.mPort, connectError.mErrorMessage);
         fflush(stderr);
         orv_destroy(orvContext);

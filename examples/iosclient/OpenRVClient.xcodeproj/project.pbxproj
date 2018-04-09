@@ -10,12 +10,12 @@
 		DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */; };
 		DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5C2077BA50007AC0DC /* RemoteView.m */; };
 		DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5D2077BA50007AC0DC /* ViewController.m */; };
-		DA6A1F662077BA51007AC0DC /* FramebufferLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */; };
 		DA6A1F672077BA51007AC0DC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5F2077BA50007AC0DC /* main.m */; };
-		DA6A1F682077BA51007AC0DC /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F622077BA51007AC0DC /* Info.plist */; };
 		DA6A1F6A2077BA8E007AC0DC /* OpenRV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A1F692077BA8E007AC0DC /* OpenRV.framework */; };
 		DA6A1F6B2077BA8E007AC0DC /* OpenRV.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DA6A1F692077BA8E007AC0DC /* OpenRV.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DA6A1F6E2077BAF2007AC0DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */; };
+		DA6A1F7820795390007AC0DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F7420795390007AC0DC /* LaunchScreen.storyboard */; };
+		DA6A1F7920795390007AC0DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA6A1F7620795390007AC0DC /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,18 +34,18 @@
 
 /* Begin PBXFileReference section */
 		DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenRVClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA6A1F592077BA50007AC0DC /* FramebufferLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FramebufferLayer.h; path = opervclient/FramebufferLayer.h; sourceTree = "<group>"; };
 		DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = opervclient/AppDelegate.h; sourceTree = "<group>"; };
 		DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = opervclient/AppDelegate.m; sourceTree = "<group>"; };
 		DA6A1F5C2077BA50007AC0DC /* RemoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteView.m; path = opervclient/RemoteView.m; sourceTree = "<group>"; };
 		DA6A1F5D2077BA50007AC0DC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = opervclient/ViewController.m; sourceTree = "<group>"; };
-		DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FramebufferLayer.m; path = opervclient/FramebufferLayer.m; sourceTree = "<group>"; };
 		DA6A1F5F2077BA50007AC0DC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = opervclient/main.m; sourceTree = "<group>"; };
 		DA6A1F602077BA50007AC0DC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = opervclient/ViewController.h; sourceTree = "<group>"; };
 		DA6A1F612077BA51007AC0DC /* RemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteView.h; path = opervclient/RemoteView.h; sourceTree = "<group>"; };
 		DA6A1F622077BA51007AC0DC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = opervclient/Info.plist; sourceTree = "<group>"; };
 		DA6A1F692077BA8E007AC0DC /* OpenRV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenRV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = opervclient/Assets.xcassets; sourceTree = "<group>"; };
+		DA6A1F7520795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = opervclient/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA6A1F7720795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = opervclient/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,10 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */,
+				DA6A1F7420795390007AC0DC /* LaunchScreen.storyboard */,
+				DA6A1F7620795390007AC0DC /* Main.storyboard */,
 				DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */,
 				DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */,
-				DA6A1F592077BA50007AC0DC /* FramebufferLayer.h */,
-				DA6A1F5E2077BA50007AC0DC /* FramebufferLayer.m */,
 				DA6A1F622077BA51007AC0DC /* Info.plist */,
 				DA6A1F5F2077BA50007AC0DC /* main.m */,
 				DA6A1F612077BA51007AC0DC /* RemoteView.h */,
@@ -145,8 +145,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA6A1F7820795390007AC0DC /* LaunchScreen.storyboard in Resources */,
 				DA6A1F6E2077BAF2007AC0DC /* Assets.xcassets in Resources */,
-				DA6A1F682077BA51007AC0DC /* Info.plist in Resources */,
+				DA6A1F7920795390007AC0DC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,11 +162,29 @@
 				DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */,
 				DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */,
 				DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */,
-				DA6A1F662077BA51007AC0DC /* FramebufferLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DA6A1F7420795390007AC0DC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA6A1F7520795390007AC0DC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		DA6A1F7620795390007AC0DC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DA6A1F7720795390007AC0DC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DAE620942077AF0B0013B811 /* Debug */ = {

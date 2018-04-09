@@ -96,10 +96,11 @@ orv_event_t* orv_event_init(orv_event_type_t type)
  * Convenience function that initializes a ORV_EVENT_CONNECT_RESULT event with the required event
  * data.
  **/
-orv_event_t* orv_event_connect_result_init(const char* hostName, uint16_t port, uint16_t width, uint16_t height, const char* desktopName, const orv_communication_pixel_format_t* pixelFormat, const orv_error_t* error)
+orv_event_t* orv_event_connect_result_init(const char* hostName, uint16_t port, uint16_t width, uint16_t height, const char* desktopName, const orv_communication_pixel_format_t* pixelFormat, orv_auth_type_t authType, const orv_error_t* error)
 {
     orv_event_t* e = orv_event_init(ORV_EVENT_CONNECT_RESULT);
     orv_connect_result_t* data = (orv_connect_result_t*)e->mEventData;
+    data->mAuthenticationType = authType;
     strncpy(data->mHostName, hostName, ORV_MAX_HOSTNAME_LEN);
     data->mHostName[ORV_MAX_HOSTNAME_LEN] = '\0';
     data->mPort = port;
@@ -541,6 +542,17 @@ void orv_connect_options_copy(orv_connect_options_t* dst, const orv_connect_opti
 }
 
 /**
+  * Set username and/or password for the current or future connection.
+  **/
+int orv_set_credentials(orv_context_t* ctx, const char* user, const char* password)
+{
+    if (!ctx->mClient->setCredentials(user, password)) {
+        return 1;
+    }
+    return 0;
+}
+
+/**
  * @param options If non-NULL, this parameter holds additional options for the connection.
  *        If NULL, this function behaves as-if default values were used, see @ref
  *        orv_connect_options_reset().
@@ -563,7 +575,7 @@ void orv_connect_options_copy(orv_connect_options_t* dst, const orv_connect_opti
  **/
 // TODO: docs: document what happens if connection has been established or if it has been rejected
 // (what callback function is called with the event).
-int orv_connect(orv_context_t* ctx, const char* host, uint16_t port, const char* password, const orv_connect_options_t* options, orv_error_t* error)
+int orv_connect(orv_context_t* ctx, const char* host, uint16_t port, const orv_connect_options_t* options, orv_error_t* error)
 {
     if (error) {
         orv_error_reset(error);
@@ -573,7 +585,7 @@ int orv_connect(orv_context_t* ctx, const char* host, uint16_t port, const char*
         orv_connect_options_default(&defaultOptions);
         options = &defaultOptions;
     }
-    if (!ctx->mClient->connectToHost(host, port, password, options, error)) {
+    if (!ctx->mClient->connectToHost(host, port, options, error)) {
         return 1;
     }
     return 0;

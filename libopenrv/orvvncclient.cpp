@@ -143,7 +143,7 @@ protected:
     void sendPointerEvent(orv_error_t* error, uint16_t x, uint16_t y, uint8_t buttonMask);
     void sendClientCutText(orv_error_t* error, const char* text, uint32_t textLen);
     void disconnectWithError(const orv_error_t& error);
-    void abortConnectWithError(const orv_error_t& error);
+    void abortConnectWithError(const orv_error_t& error, orv_auth_type_t authType = ORV_AUTH_TYPE_UNKNOWN);
     void clearPassword();
     char* allocateThreadNameString() const;
     static bool checkFramebufferSize(uint16_t framebufferWidth, uint16_t framebufferHeight, uint8_t bitsPerPixel, orv_error_t* error);
@@ -257,6 +257,33 @@ void OrvVncClient::setSharedAccess(bool shared)
     }
     mSharedAccess = shared;
 }
+bool OrvVncClient::setCredentials(const char* user, const char* password)
+{
+    std::unique_lock<std::mutex> lock(mCommunicationData->mMutex);
+    const size_t passwordLength = (password != nullptr) ? strlen(password) : 0;
+    if (password && passwordLength > ORV_MAX_PASSWORD_LEN) {
+        ORV_ERROR(mContext, "Given password is too long");
+        return false;
+    }
+    if (user && strlen(user) > ORV_MAX_USERNAME_LEN) {
+        ORV_ERROR(mContext, "Given username is too long");
+        return false;
+    }
+
+    mCommunicationData->clearPasswordMutexLocked();
+    if (password) {
+        mCommunicationData->mPassword = strdup(password);
+        mCommunicationData->mPasswordLength = passwordLength;
+    }
+
+    free(mCommunicationData->mUser);
+    mCommunicationData->mUser = nullptr;
+    if (user) {
+        mCommunicationData->mUser = strdup(user);
+    }
+    return true;
+}
+
 
 /**
  * @pre The client is not yet connected.
@@ -269,7 +296,7 @@ void OrvVncClient::setSharedAccess(bool shared)
  *         the specified host (e.g. connection already established or pending, or if parameters are
  *         invalid).
  **/
-bool OrvVncClient::connectToHost(const char* hostName, uint16_t port, const char* password, const orv_connect_options_t* options, orv_error_t* error)
+bool OrvVncClient::connectToHost(const char* hostName, uint16_t port, const orv_connect_options_t* options, orv_error_t* error)
 {
     mViewOnly = (options->mViewOnly != 0);
 
@@ -299,11 +326,6 @@ bool OrvVncClient::connectToHost(const char* hostName, uint16_t port, const char
         }
         return false;
     }
-    const size_t passwordLength = (password != nullptr) ? strlen(password) : 0;
-    if (password && passwordLength > ORV_MAX_PASSWORD_LEN) {
-        orv_error_set(error, ORV_ERR_GENERIC, 0, "Password length %u exceeds valid length", (unsigned int)ORV_MAX_PASSWORD_LEN);
-        return false;
-    }
     // NOTE: hostname/port in CommunicationData is used for the connection.
     //       we hold an additional copy in this object, so that the user can access it easily, if
     //       required.
@@ -314,11 +336,6 @@ bool OrvVncClient::connectToHost(const char* hostName, uint16_t port, const char
     mPort = port;
     mCommunicationData->mPort = port;
     mCommunicationData->mState = ConnectionState::StartConnection;
-    mCommunicationData->clearPasswordMutexLocked();
-    if (password) {
-        mCommunicationData->mPassword = strdup(password);
-        mCommunicationData->mPasswordLength = passwordLength;
-    }
     mCommunicationData->mRequestQualityProfile = options->mCommunicationQualityProfile;
     orv_communication_pixel_format_copy(&mCommunicationData->mRequestFormat, &options->mCommunicationPixelFormat);
     mCommunicationData->mAbortFlag = mCommunicationData->mWantQuitThread;
@@ -1766,6 +1783,23 @@ void ConnectionThread::run()
 
     ORV_DEBUG(mContext, "Leaving connection %p thread main function", this);
 }
+static orv_auth_type_t authTypeFromVncSecurityType(SecurityType securityType)
+{
+    orv_auth_type_t authType = ORV_AUTH_TYPE_UNKNOWN;
+    switch (securityType)
+    {
+    case SecurityType::None:
+        authType = ORV_AUTH_TYPE_NONE;
+        break;
+    case SecurityType::VNCAuthentication:
+        authType = ORV_AUTH_TYPE_VNC;
+        break;
+    default:
+        authType = ORV_AUTH_TYPE_UNKNOWN;
+        break;
+    }
+    return authType;
+}
 
 /**
  * @pre The current @ref mState is @ref ConnectionState::StartConnection
@@ -1801,10 +1835,10 @@ bool ConnectionThread::handleStartConnectionState()
             ORV_WARNING(mContext, "startVncProtocol call returned false, but did not set error parameter. Using fallback error message.");
             orv_error_set(&error, ORV_ERR_CONNECT_ERROR_GENERIC, 100002, "Failed initialize VNC protocol with remote host with unknown error (unhandled error condition).");
         }
-        abortConnectWithError(error);
+        abortConnectWithError(error, authTypeFromVncSecurityType(mConnectionInfo.mSelectedVNCSecurityType));
         return false;
     }
-    orv_event_t* event = orv_event_connect_result_init(mHostName, mPort, mCurrentFramebufferWidth, mCurrentFramebufferHeight, mConnectionInfo.mDesktopName, &mCurrentPixelFormat, nullptr);
+    orv_event_t* event = orv_event_connect_result_init(mHostName, mPort, mCurrentFramebufferWidth, mCurrentFramebufferHeight, mConnectionInfo.mDesktopName, &mCurrentPixelFormat, authTypeFromVncSecurityType(mConnectionInfo.mSelectedVNCSecurityType), nullptr);
     sendEvent(event);
     return true;
 }
@@ -2203,7 +2237,7 @@ void ConnectionThread::disconnectWithError(const orv_error_t& error)
  * This function closes the socket and sends a "connection failed" event with the specified error.
  * This function sets the current state of the connection to @ref ConnectionState::Error.
  **/
-void ConnectionThread::abortConnectWithError(const orv_error_t& error)
+void ConnectionThread::abortConnectWithError(const orv_error_t& error, orv_auth_type_t authType)
 {
     closeSocket();
     std::unique_lock<std::mutex> lock(mCommunicationData->mMutex);
@@ -2211,7 +2245,7 @@ void ConnectionThread::abortConnectWithError(const orv_error_t& error)
     mCommunicationData->mAbortFlag = mCommunicationData->mWantQuitThread;
     mCommunicationData->mUserRequestedDisconnect = false;
     lock.unlock();
-    orv_event_t* event = orv_event_connect_result_init(mHostName, mPort, 0, 0, nullptr, nullptr, &error);
+    orv_event_t* event = orv_event_connect_result_init(mHostName, mPort, 0, 0, nullptr, nullptr, authType, &error);
     sendEvent(event);
 
     const uint8_t gracefulExit = 0;

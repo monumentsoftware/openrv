@@ -77,6 +77,7 @@ extern "C" {
  **/
 #define ORV_MAX_VNC_SERVER_CUT_TEXT_SIZE 2*1024*1024
 
+#define ORV_MAX_USERNAME_LEN 1024*1024*10
 #define ORV_MAX_PASSWORD_LEN 1024*1024*10
 
 /**
@@ -283,6 +284,21 @@ typedef struct orv_event_t
      **/
     void* mEventData;
 } orv_event_t;
+
+typedef enum orv_auth_type_t
+{
+    ORV_AUTH_TYPE_UNKNOWN,
+
+    /**
+     * Authentication is disabled.
+     **/
+    ORV_AUTH_TYPE_NONE,
+
+    /**
+     * Classic vnc authentication. A password, no username is needed to login.
+     **/
+    ORV_AUTH_TYPE_VNC,
+} orv_auth_type_t;
 
 /**
  * Enum that defines what type of communication quality should be used, i.e. whether "fast transfer"
@@ -499,6 +515,12 @@ typedef struct orv_connect_result_t
     orv_error_t mError;
 
     /**
+     * Authentication type used to login to the server. This can be used to find out which
+     * type of authentication information is needed if login failed.
+     **/
+    orv_auth_type_t mAuthenticationType;
+
+    /**
      * If connection is successful (@ref mError has no error), this contains the framebuffer width
      * on the server.
      **/
@@ -554,7 +576,7 @@ typedef struct orv_event_framebuffer_t
 } orv_event_framebuffer_t;
 
 orv_event_t* orv_event_init(orv_event_type_t type);
-orv_event_t* orv_event_connect_result_init(const char* hostName, uint16_t port, uint16_t width, uint16_t height, const char* desktopName, const orv_communication_pixel_format_t* format, const orv_error_t* error);
+orv_event_t* orv_event_connect_result_init(const char* hostName, uint16_t port, uint16_t width, uint16_t height, const char* desktopName, const orv_communication_pixel_format_t* format, orv_auth_type_t authType, const orv_error_t* error);
 orv_event_t* orv_event_disconnected_init(const char* hostName, uint16_t port, uint8_t gracefulExit, const orv_error_t* error);
 orv_event_t* orv_event_framebuffer_init(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 void orv_event_destroy(orv_event_t* event);
@@ -637,9 +659,11 @@ typedef struct orv_context_t orv_context_t;
 orv_context_t* orv_init(const orv_config_t* cfg);
 void orv_destroy(orv_context_t* ctx);
 
-int orv_connect(orv_context_t* ctx, const char* host, uint16_t port, const char* password, const orv_connect_options_t* options, orv_error_t* error);
+int orv_set_credentials(orv_context_t* ctx, const char* user, const char* password);
+int orv_connect(orv_context_t* ctx, const char* host, uint16_t port, const orv_connect_options_t* options, orv_error_t* error);
 void orv_disconnect(orv_context_t* ctx);
 int orv_is_connected(orv_context_t* ctx);
+
 
 void orv_request_framebuffer_update(orv_context_t* ctx, uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 void orv_request_framebuffer_update_full(orv_context_t* ctx);

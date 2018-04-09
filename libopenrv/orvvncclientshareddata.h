@@ -181,6 +181,7 @@ struct OrvVncClientSharedData
     ConnectionState mState = ConnectionState::NotConnected;
     char mHostName[ORV_MAX_HOSTNAME_LEN + 1] = {};
     uint16_t mPort = 0;
+    char* mUser = nullptr;
     char* mPassword = nullptr;
     size_t mPasswordLength = 0;
     orv_communication_quality_profile_t mRequestQualityProfile = ORV_COMM_QUALITY_PROFILE_SERVER;
