@@ -8,56 +8,56 @@
 
 /* Begin PBXBuildFile section */
 		DA52EF582074057C00D045FB /* OpenRV.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EF562074057C00D045FB /* OpenRV.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DA52EFFE2074074200D045FB /* XF86keysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEC2074074100D045FB /* XF86keysym.h */; };
-		DA52EFFF2074074200D045FB /* reader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFED2074074100D045FB /* reader.h */; };
+		DA52EFFE2074074200D045FB /* XF86keysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEC2074074100D045FB /* XF86keysym.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52EFFF2074074200D045FB /* reader.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFED2074074100D045FB /* reader.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F0002074074200D045FB /* securitytypehandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFEE2074074100D045FB /* securitytypehandler.cpp */; };
-		DA52F0012074074200D045FB /* securitytypehandler.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEF2074074100D045FB /* securitytypehandler.h */; };
+		DA52F0012074074200D045FB /* securitytypehandler.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFEF2074074100D045FB /* securitytypehandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F0022074074200D045FB /* threadnotifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF02074074100D045FB /* threadnotifier.cpp */; };
-		DA52F0032074074200D045FB /* rectdataparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF12074074100D045FB /* rectdataparser.h */; };
+		DA52F0032074074200D045FB /* rectdataparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF12074074100D045FB /* rectdataparser.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F0042074074200D045FB /* vncdes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF22074074100D045FB /* vncdes.cpp */; };
 		DA52F0052074074200D045FB /* socket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF32074074100D045FB /* socket.cpp */; };
 		DA52F0072074074200D045FB /* rfb3xhandshake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF52074074200D045FB /* rfb3xhandshake.cpp */; };
-		DA52F0082074074200D045FB /* rfb3xhandshake.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF62074074200D045FB /* rfb3xhandshake.h */; };
-		DA52F0092074074200D045FB /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF72074074200D045FB /* utils.h */; };
-		DA52F00A2074074200D045FB /* writer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF82074074200D045FB /* writer.h */; };
-		DA52F00B2074074200D045FB /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF92074074200D045FB /* socket.h */; };
-		DA52F00C2074074200D045FB /* threadnotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFA2074074200D045FB /* threadnotifier.h */; };
-		DA52F00D2074074200D045FB /* vncdes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFB2074074200D045FB /* vncdes.h */; };
+		DA52F0082074074200D045FB /* rfb3xhandshake.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF62074074200D045FB /* rfb3xhandshake.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F0092074074200D045FB /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF72074074200D045FB /* utils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F00A2074074200D045FB /* writer.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF82074074200D045FB /* writer.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F00B2074074200D045FB /* socket.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFF92074074200D045FB /* socket.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F00C2074074200D045FB /* threadnotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFA2074074200D045FB /* threadnotifier.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F00D2074074200D045FB /* vncdes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFB2074074200D045FB /* vncdes.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F00E2074074200D045FB /* utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFFC2074074200D045FB /* utils.cpp */; };
-		DA52F00F2074074200D045FB /* rfbtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFD2074074200D045FB /* rfbtypes.h */; };
-		DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0112074076100D045FB /* orv_qtkey_to_xkeysym.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DA52F0182074076100D045FB /* orv_latencytesterclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0122074076100D045FB /* orv_latencytesterclient.h */; };
+		DA52F00F2074074200D045FB /* rfbtypes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52EFFD2074074200D045FB /* rfbtypes.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0112074076100D045FB /* orv_qtkey_to_xkeysym.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F0182074076100D045FB /* orv_latencytesterclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0122074076100D045FB /* orv_latencytesterclient.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F0192074076100D045FB /* libopenrv.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0132074076100D045FB /* libopenrv.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA52F01A2074076100D045FB /* orv_error.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0142074076100D045FB /* orv_error.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA52F01B2074076100D045FB /* orv_errorcodes.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0152074076100D045FB /* orv_errorcodes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA52F01C2074076100D045FB /* orv_logging.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F0162074076100D045FB /* orv_logging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA52F03520740B2D00D045FB /* eventqueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F01E20740B2500D045FB /* eventqueue.cpp */; };
-		DA52F03620740B2D00D045FB /* key_xkeygen.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F01F20740B2500D045FB /* key_xkeygen.h */; };
+		DA52F03620740B2D00D045FB /* key_xkeygen.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F01F20740B2500D045FB /* key_xkeygen.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F03720740B2D00D045FB /* libopenrv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02020740B2500D045FB /* libopenrv.cpp */; };
-		DA52F03920740B2D00D045FB /* messageparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02220740B2600D045FB /* messageparser.h */; };
+		DA52F03920740B2D00D045FB /* messageparser.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02220740B2600D045FB /* messageparser.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F03B20740B2D00D045FB /* orv_error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02420740B2600D045FB /* orv_error.cpp */; };
 		DA52F03C20740B2D00D045FB /* key_android.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02520740B2600D045FB /* key_android.cpp */; };
 		DA52F03D20740B2D00D045FB /* orv_latencytesterclient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02620740B2600D045FB /* orv_latencytesterclient.cpp */; };
 		DA52F03E20740B2D00D045FB /* orvvncclient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02720740B2700D045FB /* orvvncclient.cpp */; };
 		DA52F03F20740B2D00D045FB /* orvvncclientshareddata.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02820740B2700D045FB /* orvvncclientshareddata.cpp */; };
-		DA52F04020740B2D00D045FB /* orvvncclientshareddata.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02920740B2700D045FB /* orvvncclientshareddata.h */; };
-		DA52F04120740B2D00D045FB /* orvclientdefines.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02A20740B2700D045FB /* orvclientdefines.h */; };
-		DA52F04220740B2D00D045FB /* keysymdef.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02B20740B2800D045FB /* keysymdef.h */; };
+		DA52F04020740B2D00D045FB /* orvvncclientshareddata.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02920740B2700D045FB /* orvvncclientshareddata.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F04120740B2D00D045FB /* orvclientdefines.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02A20740B2700D045FB /* orvclientdefines.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F04220740B2D00D045FB /* keysymdef.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02B20740B2800D045FB /* keysymdef.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F04320740B2D00D045FB /* orv_logging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02C20740B2A00D045FB /* orv_logging.cpp */; };
-		DA52F04420740B2D00D045FB /* orv_context.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02D20740B2B00D045FB /* orv_context.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA52F04420740B2D00D045FB /* orv_context.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02D20740B2B00D045FB /* orv_context.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F04520740B2D00D045FB /* keys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F02E20740B2C00D045FB /* keys.cpp */; };
-		DA52F04620740B2D00D045FB /* eventqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02F20740B2C00D045FB /* eventqueue.h */; };
-		DA52F04720740B2D00D045FB /* keys.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03020740B2C00D045FB /* keys.h */; };
+		DA52F04620740B2D00D045FB /* eventqueue.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F02F20740B2C00D045FB /* eventqueue.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F04720740B2D00D045FB /* keys.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03020740B2C00D045FB /* keys.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F04820740B2D00D045FB /* messageparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52F03120740B2C00D045FB /* messageparser.cpp */; };
-		DA52F04920740B2D00D045FB /* orvvncclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03220740B2D00D045FB /* orvvncclient.h */; };
-		DA52F05420740C4100D045FB /* tomcrypt_argchk.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04C20740C4000D045FB /* tomcrypt_argchk.h */; };
-		DA52F05520740C4100D045FB /* tomcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04D20740C4000D045FB /* tomcrypt.h */; };
+		DA52F04920740B2D00D045FB /* orvvncclient.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F03220740B2D00D045FB /* orvvncclient.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F05420740C4100D045FB /* tomcrypt_argchk.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04C20740C4000D045FB /* tomcrypt_argchk.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F05520740C4100D045FB /* tomcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04D20740C4000D045FB /* tomcrypt.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F05620740C4100D045FB /* crypt_argchk.c in Sources */ = {isa = PBXBuildFile; fileRef = DA52F04E20740C4000D045FB /* crypt_argchk.c */; };
-		DA52F05720740C4100D045FB /* tomcrypt_custom.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04F20740C4000D045FB /* tomcrypt_custom.h */; };
-		DA52F05820740C4100D045FB /* tomcrypt_cfg.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05020740C4000D045FB /* tomcrypt_cfg.h */; };
-		DA52F05920740C4100D045FB /* tomcrypt_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05120740C4000D045FB /* tomcrypt_macros.h */; };
+		DA52F05720740C4100D045FB /* tomcrypt_custom.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F04F20740C4000D045FB /* tomcrypt_custom.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F05820740C4100D045FB /* tomcrypt_cfg.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05020740C4000D045FB /* tomcrypt_cfg.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		DA52F05920740C4100D045FB /* tomcrypt_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05120740C4000D045FB /* tomcrypt_macros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F05A20740C4100D045FB /* des.c in Sources */ = {isa = PBXBuildFile; fileRef = DA52F05220740C4100D045FB /* des.c */; };
-		DA52F05B20740C4100D045FB /* tomcrypt_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05320740C4100D045FB /* tomcrypt_cipher.h */; };
+		DA52F05B20740C4100D045FB /* tomcrypt_cipher.h in Headers */ = {isa = PBXBuildFile; fileRef = DA52F05320740C4100D045FB /* tomcrypt_cipher.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		DA52F05C20740C5400D045FB /* rectdataparser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA52EFF42074074100D045FB /* rectdataparser.cpp */; };
 		DA52F05F20740C6A00D045FB /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DA52F05E20740C6A00D045FB /* libz.tbd */; };
 		DA52F06120740E2B00D045FB /* OpenRV.m in Sources */ = {isa = PBXBuildFile; fileRef = DA52F06020740E2B00D045FB /* OpenRV.m */; };
@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				DA52EF562074057C00D045FB /* OpenRV.h */,
-				DA52EF572074057C00D045FB /* Info.plist */,
 				DA52F06020740E2B00D045FB /* OpenRV.m */,
+				DA52EF572074057C00D045FB /* Info.plist */,
 			);
 			path = openrv;
 			sourceTree = "<group>";
@@ -277,15 +277,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */,
-				DA52F00B2074074200D045FB /* socket.h in Headers */,
 				DA52F0A12075555A00D045FB /* orv_version.h in Headers */,
 				DA52F01A2074076100D045FB /* orv_error.h in Headers */,
-				DA52F04420740B2D00D045FB /* orv_context.h in Headers */,
 				DA52F01C2074076100D045FB /* orv_logging.h in Headers */,
 				DA52F0192074076100D045FB /* libopenrv.h in Headers */,
 				DA52F0A02075555A00D045FB /* orv_config.h in Headers */,
 				DA52F01B2074076100D045FB /* orv_errorcodes.h in Headers */,
+				DA52F00B2074074200D045FB /* socket.h in Headers */,
+				DA52F04420740B2D00D045FB /* orv_context.h in Headers */,
+				DA52F0172074076100D045FB /* orv_qtkey_to_xkeysym.h in Headers */,
 				DA52F04220740B2D00D045FB /* keysymdef.h in Headers */,
 				DA52EFFE2074074200D045FB /* XF86keysym.h in Headers */,
 				DA52F04020740B2D00D045FB /* orvvncclientshareddata.h in Headers */,
@@ -302,7 +302,6 @@
 				DA52F00A2074074200D045FB /* writer.h in Headers */,
 				DA52F0082074074200D045FB /* rfb3xhandshake.h in Headers */,
 				DA52F00C2074074200D045FB /* threadnotifier.h in Headers */,
-				DA52EF582074057C00D045FB /* OpenRV.h in Headers */,
 				DA52F04920740B2D00D045FB /* orvvncclient.h in Headers */,
 				DA52EFFF2074074200D045FB /* reader.h in Headers */,
 				DA52F00D2074074200D045FB /* vncdes.h in Headers */,
@@ -312,6 +311,7 @@
 				DA52F05720740C4100D045FB /* tomcrypt_custom.h in Headers */,
 				DA52F00F2074074200D045FB /* rfbtypes.h in Headers */,
 				DA52F0182074076100D045FB /* orv_latencytesterclient.h in Headers */,
+				DA52EF582074057C00D045FB /* OpenRV.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
