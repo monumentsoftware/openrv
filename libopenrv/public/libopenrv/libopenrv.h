@@ -17,8 +17,8 @@
 #ifndef OPENRV_LIBOPENRV_H
 #define OPENRV_LIBOPENRV_H
 
-#include <libopenrv/orv_version.h>
-#include <libopenrv/orv_config.h>
+#include "orv_version.h"
+#include "orv_config.h"
 #include "orv_logging.h"
 #include "orv_error.h"
 #include "orv_errorcodes.h"

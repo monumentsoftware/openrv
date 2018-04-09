@@ -165,7 +165,11 @@ if (ORV_BUILD_QT_CLIENT)
   endforeach ()
 endif ()
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
+# NOTE: We have some generated headers that should be included using #include "" notation
+#       (instead of <>) as well, include_directories() does not support that. so we use
+#       -iquote manually.
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
 
 set(libopenrv_thirdparty_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt/des.c
