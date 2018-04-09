@@ -7,12 +7,11 @@
 //
 
 
-#import <UIKit/UIKit.h>
-#import "FramebufferLayer.h"
+@import UIKit;
+@import GLKit;
 
-@interface RemoteView : UIView
-
+@interface RemoteView : GLKView
 -(instancetype) initWithFrame:(CGRect)frame;
-
-
+-(void) setRemoteBufferSize:(CGSize)size;
+-(void) fillRemoteBuffer:(const uint8_t*)data frame:(CGRect)frame;
 @end

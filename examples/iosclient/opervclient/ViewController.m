@@ -34,7 +34,8 @@
     }
     mOpenRVContext = [[OpenRVContext alloc] init];
     mOpenRVContext.delegate = self;
-    [mOpenRVContext connectToHost:@"176.9.90.194"];
+    [mOpenRVContext setCredentials:nil password:@""];
+    [mOpenRVContext connectToHost:@""];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,17 +43,25 @@
     [super didReceiveMemoryWarning];
 }
 
--(void) contextDidConnect:(OpenRVContext*)context withError:(const orv_error_t*)error
+-(void) openRVContextDidConnect:(OpenRVContext *)context
 {
-
+    [mRemoteView setRemoteBufferSize:context.framebufferSize];
 }
--(void) contextDidDisconnected:(OpenRVContext*)context
+-(void) openRVContextConnectFailed:(OpenRVContext *)context withError:(const orv_error_t *)error
 {
-
 }
--(void) contextFramebufferUpdated:(OpenRVContext*)context frame:(CGRect)frame
+-(void) openRVContextDidDisconnected:(OpenRVContext *)context
 {
-
 }
-
+-(void) openRVContextFramebufferUpdated:(OpenRVContext *)context frame:(CGRect)frame
+{
+    OpenRVFramebuffer* fb = [mOpenRVContext lockFramebuffer];
+    if (!fb) {
+        NSLog(@"ERROR failed to lock framebuffer");
+        return;
+    }
+    [mRemoteView fillRemoteBuffer:fb.buffer frame:frame];
+    [mOpenRVContext unlockFramebuffer];
+    [mRemoteView setNeedsDisplay];
+}
 @end
