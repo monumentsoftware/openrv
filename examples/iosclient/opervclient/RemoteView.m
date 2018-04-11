@@ -67,7 +67,6 @@ const char* fragmentShaderSource = ""
 
     GLsizei mViewportWidth;
     GLsizei mViewportHeight;
-
 }
 -(instancetype) initWithFrame:(CGRect)frame
 {
@@ -86,6 +85,7 @@ const char* fragmentShaderSource = ""
         [self createPrimitives];
 
     }
+    [self setUserInteractionEnabled:true];
     return self;
 }
 -(void) checkGLError
@@ -306,5 +306,12 @@ const char* fragmentShaderSource = ""
     mViewportHeight = self.bounds.size.height * [UIScreen mainScreen].scale;
 }
 
+-(void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_viewController sendTouchEvents:touches click:true];
+}
+
+-(void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    [_viewController sendTouchEvents:touches click:false];
+}
 
 @end

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D18693B207E3F9800606C7C /* InputFields.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18693A207E3F9800606C7C /* InputFields.m */; };
+		5D18693E207E4FEB00606C7C /* RemoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D18693D207E4FEB00606C7C /* RemoteViewController.m */; };
 		DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */; };
 		DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5C2077BA50007AC0DC /* RemoteView.m */; };
 		DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6A1F5D2077BA50007AC0DC /* ViewController.m */; };
@@ -33,6 +35,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D186939207E3F9800606C7C /* InputFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InputFields.h; path = opervclient/InputFields.h; sourceTree = "<group>"; };
+		5D18693A207E3F9800606C7C /* InputFields.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InputFields.m; path = opervclient/InputFields.m; sourceTree = "<group>"; };
+		5D18693C207E4FEB00606C7C /* RemoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RemoteViewController.h; path = opervclient/RemoteViewController.h; sourceTree = "<group>"; };
+		5D18693D207E4FEB00606C7C /* RemoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RemoteViewController.m; path = opervclient/RemoteViewController.m; sourceTree = "<group>"; };
 		DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenRVClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = opervclient/AppDelegate.h; sourceTree = "<group>"; };
 		DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = opervclient/AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +80,10 @@
 				DA6A1F5C2077BA50007AC0DC /* RemoteView.m */,
 				DA6A1F602077BA50007AC0DC /* ViewController.h */,
 				DA6A1F5D2077BA50007AC0DC /* ViewController.m */,
+				5D18693C207E4FEB00606C7C /* RemoteViewController.h */,
+				5D18693D207E4FEB00606C7C /* RemoteViewController.m */,
+				5D186939207E3F9800606C7C /* InputFields.h */,
+				5D18693A207E3F9800606C7C /* InputFields.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -160,8 +170,10 @@
 			files = (
 				DA6A1F672077BA51007AC0DC /* main.m in Sources */,
 				DA6A1F652077BA51007AC0DC /* ViewController.m in Sources */,
+				5D18693E207E4FEB00606C7C /* RemoteViewController.m in Sources */,
 				DA6A1F642077BA51007AC0DC /* RemoteView.m in Sources */,
 				DA6A1F632077BA51007AC0DC /* AppDelegate.m in Sources */,
+				5D18693B207E3F9800606C7C /* InputFields.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

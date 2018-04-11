@@ -9,9 +9,12 @@
 
 @import UIKit;
 @import GLKit;
+#include "RemoteViewController.h"
+
 
 @interface RemoteView : GLKView
 -(instancetype) initWithFrame:(CGRect)frame;
 -(void) setRemoteBufferSize:(CGSize)size;
 -(void) fillRemoteBuffer:(const uint8_t*)data frame:(CGRect)frame;
+@property RemoteViewController* viewController;
 @end
