@@ -1,0 +1,49 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 27
+        versionCode 1
+
+        // TODO: take from version.cmake in toplevel dir
+        versionName "0.0.1"
+
+        // TODO: use consumerProguardFiles
+        // TODO: use consumerProguardFiles (here or in buildTypes.release?)
+        //  see https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DefaultConfig.html#com.android.build.gradle.internal.dsl.DefaultConfig:consumerProguardFiles
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14 -frtti -fexceptions"
+                abiFilters 'armeabi-v7a'
+
+                // this library project uses a dedicated toplevel CMakeLists.txt and uses the main
+                // openrv CMakeLists.txt as a add_subdirectory() argument. consequently we don't
+                // need the actual library targets added by the main CMakeLists.txt, only our own
+                // (android) library.
+                arguments "-DORV_BUILD_STATIC_LIB=OFF", "-DORV_BUILD_SHARED_LIB=OFF"
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            // TODO: use consumerProguardFiles (here or in defaultConfig?)
+            //  see https://google.github.io/android-gradle-dsl/current/com.android.build.gradle.internal.dsl.DefaultConfig.html#com.android.build.gradle.internal.dsl.DefaultConfig:consumerProguardFiles
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+}
