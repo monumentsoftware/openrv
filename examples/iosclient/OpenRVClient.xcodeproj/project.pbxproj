@@ -35,23 +35,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5D186939207E3F9800606C7C /* InputFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InputFields.h; path = opervclient/InputFields.h; sourceTree = "<group>"; };
-		5D18693A207E3F9800606C7C /* InputFields.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InputFields.m; path = opervclient/InputFields.m; sourceTree = "<group>"; };
-		5D18693C207E4FEB00606C7C /* RemoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RemoteViewController.h; path = opervclient/RemoteViewController.h; sourceTree = "<group>"; };
-		5D18693D207E4FEB00606C7C /* RemoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RemoteViewController.m; path = opervclient/RemoteViewController.m; sourceTree = "<group>"; };
+		5D186939207E3F9800606C7C /* InputFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InputFields.h; path = openrvclient/InputFields.h; sourceTree = "<group>"; };
+		5D18693A207E3F9800606C7C /* InputFields.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = InputFields.m; path = openrvclient/InputFields.m; sourceTree = "<group>"; };
+		5D18693C207E4FEB00606C7C /* RemoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RemoteViewController.h; path = openrvclient/RemoteViewController.h; sourceTree = "<group>"; };
+		5D18693D207E4FEB00606C7C /* RemoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = RemoteViewController.m; path = openrvclient/RemoteViewController.m; sourceTree = "<group>"; };
 		DA6A1F532077B9FD007AC0DC /* OpenRVClient.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenRVClient.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = opervclient/AppDelegate.h; sourceTree = "<group>"; };
-		DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = opervclient/AppDelegate.m; sourceTree = "<group>"; };
-		DA6A1F5C2077BA50007AC0DC /* RemoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteView.m; path = opervclient/RemoteView.m; sourceTree = "<group>"; };
-		DA6A1F5D2077BA50007AC0DC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = opervclient/ViewController.m; sourceTree = "<group>"; };
-		DA6A1F5F2077BA50007AC0DC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = opervclient/main.m; sourceTree = "<group>"; };
-		DA6A1F602077BA50007AC0DC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = opervclient/ViewController.h; sourceTree = "<group>"; };
-		DA6A1F612077BA51007AC0DC /* RemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteView.h; path = opervclient/RemoteView.h; sourceTree = "<group>"; };
-		DA6A1F622077BA51007AC0DC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = opervclient/Info.plist; sourceTree = "<group>"; };
+		DA6A1F5A2077BA50007AC0DC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = openrvclient/AppDelegate.h; sourceTree = "<group>"; };
+		DA6A1F5B2077BA50007AC0DC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = openrvclient/AppDelegate.m; sourceTree = "<group>"; };
+		DA6A1F5C2077BA50007AC0DC /* RemoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RemoteView.m; path = openrvclient/RemoteView.m; sourceTree = "<group>"; };
+		DA6A1F5D2077BA50007AC0DC /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = openrvclient/ViewController.m; sourceTree = "<group>"; };
+		DA6A1F5F2077BA50007AC0DC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = openrvclient/main.m; sourceTree = "<group>"; };
+		DA6A1F602077BA50007AC0DC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = openrvclient/ViewController.h; sourceTree = "<group>"; };
+		DA6A1F612077BA51007AC0DC /* RemoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RemoteView.h; path = openrvclient/RemoteView.h; sourceTree = "<group>"; };
+		DA6A1F622077BA51007AC0DC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = openrvclient/Info.plist; sourceTree = "<group>"; };
 		DA6A1F692077BA8E007AC0DC /* OpenRV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = OpenRV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = opervclient/Assets.xcassets; sourceTree = "<group>"; };
-		DA6A1F7520795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = opervclient/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		DA6A1F7720795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = opervclient/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DA6A1F6D2077BAF2007AC0DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = openrvclient/Assets.xcassets; sourceTree = "<group>"; };
+		DA6A1F7520795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = openrvclient/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DA6A1F7720795390007AC0DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = openrvclient/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,7 +315,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QB6BN2XX56;
-				INFOPLIST_FILE = "$(SRCROOT)/opervclient/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/openrvclient/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +332,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QB6BN2XX56;
-				INFOPLIST_FILE = "$(SRCROOT)/opervclient/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/openrvclient/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
