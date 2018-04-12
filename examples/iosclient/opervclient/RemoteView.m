@@ -302,6 +302,7 @@ const char* fragmentShaderSource = ""
 }
 -(void) layoutSubviews
 {
+    [super layoutSubviews];
     mViewportWidth = self.bounds.size.width * [UIScreen mainScreen].scale;
     mViewportHeight = self.bounds.size.height * [UIScreen mainScreen].scale;
 }
