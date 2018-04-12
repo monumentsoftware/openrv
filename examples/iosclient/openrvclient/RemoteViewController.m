@@ -131,7 +131,7 @@
     CGSize screenSize = mOpenRVContext.framebufferSize;
     int32_t x = screenSize.width/2;
     int32_t y = screenSize.height/2;
-    [mOpenRVContext sendPointerEvent:x y:y buttonMask: 0];
+    [mOpenRVContext sendPointerEvent:x-3 y:y-3 buttonMask: 0];
     [mOpenRVContext sendPointerEvent:x y:y buttonMask: 0];
 }
 -(void) openRVContextConnectFailed:(OpenRVContext *)context withError:(const orv_error_t *)error
