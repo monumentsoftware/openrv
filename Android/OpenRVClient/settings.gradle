@@ -1,0 +1,2 @@
+include ':app', ':libopenrv'
+project(':libopenrv').projectDir = new File('../openrv/libopenrv')

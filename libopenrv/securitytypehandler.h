@@ -17,7 +17,7 @@
 #ifndef OPENRV_SECURITYTYPEHANDLER_H
 #define OPENRV_SECURITYTYPEHANDLER_H
 
-#include <libopenrv/orv_config.h>
+#include "orv_config.h"
 #include "rfbtypes.h"
 
 #include <stdint.h>

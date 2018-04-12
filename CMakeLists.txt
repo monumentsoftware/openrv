@@ -168,8 +168,10 @@ endif ()
 # NOTE: We have some generated headers that should be included using #include "" notation
 #       (instead of <>) as well, include_directories() does not support that. so we use
 #       -iquote manually.
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
+set(libopenrv_object_C_FLAGS "-iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
+set(libopenrv_object_CXX_FLAGS "-iquote ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public/libopenrv")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${libopenrv_object_C_FLAGS}")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${libopenrv_object_CXX_FLAGS}")
 
 set(libopenrv_thirdparty_SRCS
   ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt/des.c
@@ -225,18 +227,22 @@ set(libopenrv_SRCS
 add_library(openrv_object OBJECT ${libopenrv_SRCS})
 set_target_properties(openrv_object PROPERTIES POSITION_INDEPENDENT_CODE True)
 target_include_directories(openrv_object SYSTEM PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/libtomcrypt ${MBEDTLS_INCLUDE_DIRS} ${OPENSSL_INCLUDE_DIR} ${ZLIB_INCLUDE_DIRS})
-target_include_directories(openrv_object PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public ${CMAKE_CURRENT_BINARY_DIR}/libopenrv/public)
+set(libopenrv_object_public_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/libopenrv/public)
+target_include_directories(openrv_object PUBLIC ${libopenrv_object_public_INCLUDE_DIRS})
 
 # cmake object libraries are currently not allowed to link to anything (apparently this is a cmake
 # todo). so we track the dependencies in a separate variable and the individual targets need to link
 # to them explicitly.
 set(libopenrv_object_LIBRARIES ${MBEDTLS_LIBRARIES} ${OPENSSL_LIBRARIES} ${ZLIB_LIBRARIES})
 
-# provide libopenrv_object_LIBRARIES to the parent scope, in case this CMakeLists.txt file is not
-# the toplevel file (used by the android library project)
+# provide libopenrv_object_LIBRARIES and libopenrv_object_INCLUDE_DIRS to the parent scope,
+# in case this CMakeLists.txt file is not the toplevel file (used by the android library project)
 get_directory_property(cmake_parent_directory PARENT_DIRECTORY)
 if (cmake_parent_directory)
   set(libopenrv_object_LIBRARIES ${libopenrv_object_LIBRARIES} PARENT_SCOPE)
+  set(libopenrv_object_INCLUDE_DIRS ${libopenrv_object_public_INCLUDE_DIRS} PARENT_SCOPE)
+  set(libopenrv_object_C_FLAGS "${libopenrv_object_C_FLAGS}" PARENT_SCOPE)
+  set(libopenrv_object_CXX_FLAGS "${libopenrv_object_CXX_FLAGS}" PARENT_SCOPE)
 endif ()
 
 if (ORV_BUILD_STATIC_LIB)
