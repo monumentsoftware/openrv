@@ -10,8 +10,8 @@
 #import "ViewController.h"
 @import OpenRV;
 
-@interface RemoteViewController : UIViewController<OpenRVContextDelegate>
--(instancetype) initViewController:(ViewController*)viewController;
+@interface RemoteViewController : UIViewController<OpenRVContextDelegate, UITextFieldDelegate>
 -(void) sendTouchEvents:(NSSet<UITouch *> *)touches click:(bool)clickdown;
-@property OpenRVContext* openRVContext;
+-(void) show:(OpenRVContext*)connectionContext;
+@property ViewController* viewController;
 @end

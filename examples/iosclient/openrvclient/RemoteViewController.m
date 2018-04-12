@@ -12,31 +12,24 @@
 @interface RemoteViewController (){
     RemoteView* mRemoteView;
     UIToolbar* mToolBar;
-    ViewController* mViewController;
+    OpenRVContext* mOpenRVContext;
+    BOOL mIsConntected;
+    UITextField* mTextField;
 }
 @end
 
 @implementation RemoteViewController
-
--(instancetype) initViewController:(ViewController*)viewController
-{
-    self = [super init];
-    if (self) {
-        mViewController = viewController;
-    }else{
-        return nil;
-    }
-    return self;
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    mIsConntected = false;
     mRemoteView = [[RemoteView alloc] init];
     mRemoteView.viewController = self;
     [self.view addSubview:mRemoteView];
     
     mToolBar = [[UIToolbar alloc] init];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Disconnect" style:UIBarButtonItemStyleDone  target:nil action:@selector(closeConnection)];
-    NSArray *items = [NSArray arrayWithObjects: back, nil];
+    UIBarButtonItem *keyboard = [[UIBarButtonItem alloc] initWithTitle:@"Keyboard" style:UIBarButtonItemStyleDone  target:nil action:@selector(showKeyboard)];
+    NSArray *items = [NSArray arrayWithObjects: back, keyboard, nil];
     mToolBar.items = items;
     [self.view addSubview:mToolBar];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(rotated) name:UIDeviceOrientationDidChangeNotification object:nil];
@@ -45,53 +38,109 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [self shouldRotate:true];
+    
 }
 -(void) rotated
 {
-    if (UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeRight || UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeLeft) {
-        [mRemoteView setFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 40)];
-        [mToolBar setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
-    } else {
-        UIEdgeInsets inset = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
-        [mRemoteView setFrame:CGRectMake(0, inset.bottom+40, self.view.bounds.size.width, self.view.bounds.size.height - (inset.bottom+40))];
-        [mToolBar setFrame:CGRectMake(0, inset.bottom, self.view.bounds.size.width, 40)];
+    UIEdgeInsets inset = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
+    CGFloat toolbarHeight = 40;
+    if (mIsConntected) {
+        CGFloat r = mOpenRVContext.framebufferSize.width/mOpenRVContext.framebufferSize.height;
+        if (UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeRight || UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeLeft) {
+            [mRemoteView setFrame:CGRectMake((self.view.bounds.size.width - (self.view.bounds.size.height-toolbarHeight)*r)/2, toolbarHeight, self.view.bounds.size.height*r, self.view.bounds.size.height-toolbarHeight)];
+        } else {
+            r = mOpenRVContext.framebufferSize.height/mOpenRVContext.framebufferSize.width;
+            [mRemoteView setFrame:CGRectMake(0, (self.view.bounds.size.height - self.view.bounds.size.width*r)/2, self.view.bounds.size.width, self.view.bounds.size.width*r)];
+        }
     }
-   
+    [mToolBar setFrame:CGRectMake(0, UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait ? inset.bottom : 0, self.view.bounds.size.width, toolbarHeight)];
 }
 -(void) sendTouchEvents:(NSSet<UITouch *> *)touches click:(bool)clickdown
 {
     for (UITouch *t in touches) {
         CGPoint p = [t locationInView:mRemoteView];
-        CGSize screenSize = mViewController.openRVContext.framebufferSize;
+        CGSize screenSize = mOpenRVContext.framebufferSize;
         CGSize remoteViewSize = mRemoteView.bounds.size;
         int32_t x = (p.x / remoteViewSize.width) * screenSize.width;
         int32_t y = (p.y / remoteViewSize.height) * screenSize.height;
-        [mViewController.openRVContext sendPointerEvent:x y:y buttonMask: clickdown == true ? 1 : 0];
+        [mOpenRVContext sendPointerEvent:x y:y buttonMask: clickdown == true ? 1 : 0];
     }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(void) show:(OpenRVContext*)connectionContext
+{
+    mOpenRVContext = connectionContext;
+}
 -(void) closeConnection
 {
     [self dismissViewControllerAnimated:true completion:nil];
-    [mViewController.openRVContext disconnect];
+    [mOpenRVContext disconnect];
+}
+-(void) showKeyboard
+{
+    if (!mTextField) {
+        mTextField = [UITextField new];
+        mTextField.frame = CGRectMake(-100, -100, 50, 50);
+        mTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+        mTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+        mTextField.spellCheckingType = UITextSpellCheckingTypeNo;
+        mTextField.keyboardType = UIKeyboardTypeDefault;
+        mTextField.delegate = self;
+        mTextField.text = @"dummy";
+        [self.view addSubview:mTextField];
+        [mTextField becomeFirstResponder];
+    } else {
+        [mTextField removeFromSuperview];
+        mTextField = nil;
+    }
+}
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if (string.length == 1) {
+        unichar c = [string characterAtIndex:0];
+        [self sendKeyEvent:c];
+    }
+    else if (string.length == 0) {
+        [self sendKeyEvent:8];
+    }
+    return NO;
+}
+-(void) sendKeyEvent:(unichar)key
+{
+    if (key == 8) { // backspace
+        [mOpenRVContext sendKeyEvent:0xff08 isDown:1];
+        [mOpenRVContext sendKeyEvent:0xff08 isDown:0];
+    } else {
+        [mOpenRVContext sendKeyEvent:key isDown:1];
+        [mOpenRVContext sendKeyEvent:key isDown:0];
+    }
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    return YES;
 }
 -(void) openRVContextDidConnect:(OpenRVContext *)context
 {
+    mIsConntected = true;
     [mRemoteView setRemoteBufferSize:context.framebufferSize];
     CGFloat r = context.framebufferSize.height/context.framebufferSize.width;
     [mRemoteView setFrame:CGRectMake(0, (self.view.bounds.size.height - self.view.bounds.size.width*r)/2, self.view.bounds.size.width, self.view.bounds.size.width*r)];
+    CGSize screenSize = mOpenRVContext.framebufferSize;
+    int32_t x = screenSize.width/2;
+    int32_t y = screenSize.height/2;
+    [mOpenRVContext sendPointerEvent:x y:y buttonMask: 0];
+    [mOpenRVContext sendPointerEvent:x y:y buttonMask: 0];
 }
 -(void) openRVContextConnectFailed:(OpenRVContext *)context withError:(const orv_error_t *)error
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:[NSString stringWithUTF8String:error->mErrorMessage] preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:([UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:nil])];
+    [alert addAction:([UIAlertAction actionWithTitle:@"Close" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [self->_viewController dismissViewControllerAnimated:true completion:nil];
+    }])];
     [self presentViewController:alert animated:true completion:nil];
-    [self dismissViewControllerAnimated:true completion:^{
-        [self dismissViewControllerAnimated:true completion:nil];
-    }];
 }
 -(void) openRVContextDidDisconnected:(OpenRVContext *)context
 {

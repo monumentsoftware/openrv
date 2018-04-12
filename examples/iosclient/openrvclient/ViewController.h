@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@import OpenRV;
 
 @interface ViewController : UIViewController
 -(void) connect:(NSString*)ip port:(NSString*)port password:(NSString*)password;
-@property OpenRVContext* openRVContext;
 @end
 

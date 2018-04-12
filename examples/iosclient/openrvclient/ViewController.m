@@ -28,19 +28,18 @@
 }
 -(void) connect:(NSString*)ip port:(NSString*)port password:(NSString*)password
 {
-    if (_openRVContext) {
-        return;
-    }
     if (![ip  isEqual: @""] && ![port isEqual: @""] && ![password isEqual: @""]) {
-        _openRVContext = [[OpenRVContext alloc] init];
+        OpenRVContext* openRVContext = [[OpenRVContext alloc] init];
         
-        RemoteViewController* remoteCtrl = [[RemoteViewController alloc] initViewController:self];
+        RemoteViewController* remoteCtrl = [[RemoteViewController alloc] init];
+        remoteCtrl.viewController = self;
+        openRVContext.delegate = remoteCtrl;
+        [openRVContext setCredentials:nil password:password];
+        [openRVContext setPort:(uint16_t)[port integerValue]];
+        [openRVContext connectToHost:ip];
+        [remoteCtrl show:openRVContext];
+        
         [self presentViewController:remoteCtrl animated:true completion:nil];
-        
-        _openRVContext.delegate = remoteCtrl;
-        [_openRVContext setCredentials:nil password:password];
-        [_openRVContext setPort:(uint16_t)[port integerValue]];
-        [_openRVContext connectToHost:ip];
     }
 }
 - (void)viewDidAppear:(BOOL)animated
