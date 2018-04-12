@@ -11,6 +11,6 @@
 
 @interface ViewController : UIViewController
 -(void) connect:(NSString*)ip port:(NSString*)port password:(NSString*)password;
-@property OpenRVContext* mOpenRVContext;
+@property OpenRVContext* openRVContext;
 @end
 

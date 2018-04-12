@@ -8,6 +8,7 @@
 
 #import "RemoteViewController.h"
 #import "RemoteView.h"
+#import "AppDelegate.h"
 @interface RemoteViewController (){
     RemoteView* mRemoteView;
     UIToolbar* mToolBar;
@@ -29,17 +30,21 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIEdgeInsets inset = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
-    mRemoteView = [[RemoteView alloc] initWithFrame:CGRectMake(0, inset.bottom+40, self.view.bounds.size.width, self.view.bounds.size.height - (inset.bottom+40))];
+    mRemoteView = [[RemoteView alloc] init];
     mRemoteView.viewController = self;
     [self.view addSubview:mRemoteView];
     
-    mToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, inset.bottom, self.view.bounds.size.width, 40)];
+    mToolBar = [[UIToolbar alloc] init];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Disconnect" style:UIBarButtonItemStyleDone  target:nil action:@selector(closeConnection)];
     NSArray *items = [NSArray arrayWithObjects: back, nil];
     mToolBar.items = items;
     [self.view addSubview:mToolBar];
     [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(rotated) name:UIDeviceOrientationDidChangeNotification object:nil];
+    [self rotated];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self shouldRotate:true];
 }
 -(void) rotated
 {
@@ -57,11 +62,11 @@
 {
     for (UITouch *t in touches) {
         CGPoint p = [t locationInView:mRemoteView];
-        CGSize screenSize = mViewController.mOpenRVContext.framebufferSize;
+        CGSize screenSize = mViewController.openRVContext.framebufferSize;
         CGSize remoteViewSize = mRemoteView.bounds.size;
         int32_t x = (p.x / remoteViewSize.width) * screenSize.width;
         int32_t y = (p.y / remoteViewSize.height) * screenSize.height;
-        [mViewController.mOpenRVContext sendPointerEvent:x y:y buttonMask: clickdown == true ? 1 : 0];
+        [mViewController.openRVContext sendPointerEvent:x y:y buttonMask: clickdown == true ? 1 : 0];
     }
 }
 - (void)didReceiveMemoryWarning {
@@ -71,7 +76,7 @@
 -(void) closeConnection
 {
     [self dismissViewControllerAnimated:true completion:nil];
-    [mViewController.mOpenRVContext disconnect];
+    [mViewController.openRVContext disconnect];
 }
 -(void) openRVContextDidConnect:(OpenRVContext *)context
 {
@@ -102,6 +107,11 @@
     [mRemoteView fillRemoteBuffer:fb.buffer frame:frame];
     [context unlockFramebuffer];
     [mRemoteView setNeedsDisplay];
+}
+-(void) shouldRotate:(bool) rotate
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.shouldRotate = rotate;
 }
 
 /*

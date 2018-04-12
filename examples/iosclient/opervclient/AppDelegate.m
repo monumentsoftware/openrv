@@ -20,6 +20,13 @@
     return YES;
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if(!_shouldRotate) {
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    return UIInterfaceOrientationMaskAll;
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

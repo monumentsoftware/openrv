@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
-@interface InputFields : UIView
+@interface InputFields : UIView <UITextInputDelegate>
 -(instancetype) initWithFrame:(CGRect)frame viewController:(ViewController*)viewController;
-@property ViewController* mViewController;
+@property ViewController* viewController;
 @end

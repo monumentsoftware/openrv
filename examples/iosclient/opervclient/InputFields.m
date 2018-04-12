@@ -7,86 +7,108 @@
 //
 
 #import "InputFields.h"
-
 @implementation InputFields
 {
-UIButton* connectButton;
-UILabel* ipLabel;
-UITextField* ipTextField;
-UILabel* portLabel;
-UITextField* portTextField;
-UILabel* passwordLabel;
-UITextField* passwordTextField;
+    UIButton* mConnectButton;
+    UILabel* mIpLabel;
+    UITextField* mIpTextField;
+    UILabel* mPortLabel;
+    UITextField* mPortTextField;
+    UILabel* mPasswordLabel;
+    UITextField* mPasswordTextField;
 }
 -(instancetype) initWithFrame:(CGRect)frame viewController:(ViewController*)viewController
 {
     self = [super initWithFrame:frame];
     if (self) {
-        _mViewController = viewController;
-        ipLabel = [[UILabel alloc] init];
-        [ipLabel setText:@"Server address"];
-        [ipLabel sizeToFit];
+        _viewController = viewController;
+        mIpLabel = [[UILabel alloc] init];
+        [mIpLabel setText:@"Server address"];
+        [mIpLabel sizeToFit];
         CGFloat y = 0;
-        [ipLabel setFrame:CGRectMake((self.bounds.size.width - ipLabel.frame.size.width)/2, y, ipLabel.frame.size.width, ipLabel.frame.size.height)];
-        [self addSubview:ipLabel];
+        [mIpLabel setFrame:CGRectMake((self.bounds.size.width - mIpLabel.frame.size.width)/2, y, mIpLabel.frame.size.width, mIpLabel.frame.size.height)];
+        [self addSubview:mIpLabel];
         
-        ipTextField = [[UITextField alloc] init];
-        [ipTextField setPlaceholder:@"Server ip"];
-        [ipTextField sizeToFit];
-        [ipTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [ipTextField setTextAlignment:NSTextAlignmentCenter];
-        y += ipLabel.frame.size.height + 10;
-        [ipTextField setFrame:CGRectMake((self.bounds.size.width / 2 - 60), y, 120, ipTextField.frame.size.height)];
-        [self addSubview:ipTextField];
+        mIpTextField = [[UITextField alloc] init];
+        [mIpTextField setDelegate:(id)self];
+        [mIpTextField setPlaceholder:@"Server ip"];
+        [mIpTextField sizeToFit];
+        [mIpTextField setBorderStyle:UITextBorderStyleRoundedRect];
+        [mIpTextField setTextAlignment:NSTextAlignmentCenter];
+        y += mIpLabel.frame.size.height + 20;
+        [mIpTextField setFrame:CGRectMake(15, y, (self.bounds.size.width - 30), mIpTextField.frame.size.height + 10)];
+        [self addSubview:mIpTextField];
         
-        portLabel = [[UILabel alloc] init];
-        [portLabel setText:@"Server port"];
-        [portLabel sizeToFit];
-        y += ipTextField.frame.size.height + 15;
-        [portLabel setFrame:CGRectMake((self.bounds.size.width - portLabel.frame.size.width)/2, y, portLabel.frame.size.width, portLabel.frame.size.height)];
-        [portLabel sizeToFit];
-        [self addSubview:portLabel];
+        mPortLabel = [[UILabel alloc] init];
+        [mPortLabel setText:@"Server port"];
+        [mPortLabel sizeToFit];
+        y += mIpTextField.frame.size.height + 15;
+        [mPortLabel setFrame:CGRectMake((self.bounds.size.width - mPortLabel.frame.size.width)/2, y, mPortLabel.frame.size.width, mPortLabel.frame.size.height)];
+        [mPortLabel sizeToFit];
+        [self addSubview:mPortLabel];
         
-        portTextField = [[UITextField alloc] init];
-        [portTextField setPlaceholder:@"port"];
-        [portTextField setText:@"5900"];
-        [portTextField sizeToFit];
-        [portTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [portTextField setTextAlignment:NSTextAlignmentCenter];
-        y += portLabel.frame.size.height + 10;
-        [portTextField setFrame:CGRectMake((self.bounds.size.width / 2 - 60), y, 120, portTextField.frame.size.height)];
-        [self addSubview:portTextField];
+        mPortTextField = [[UITextField alloc] init];
+        [mPortTextField setDelegate:(id)self];
+        [mPortTextField setPlaceholder:@"port"];
+        [mPortTextField setText:@"5900"];
+        [mPortTextField sizeToFit];
+        [mPortTextField setBorderStyle:UITextBorderStyleRoundedRect];
+        [mPortTextField setTextAlignment:NSTextAlignmentCenter];
+        y += mPortLabel.frame.size.height + 20;
+        [mPortTextField setFrame:CGRectMake(15, y, (self.bounds.size.width - 30), mPortTextField.frame.size.height + 10)];
+        [self addSubview:mPortTextField];
         
-        passwordLabel = [[UILabel alloc] init];
-        [passwordLabel setText:@"Password"];
-        [passwordLabel sizeToFit];
-        y += portTextField.frame.size.height + 15;
-        [passwordLabel setFrame:CGRectMake(self.bounds.size.width/2 - passwordLabel.frame.size.width/2, y, passwordLabel.frame.size.width, passwordLabel.frame.size.height)];
-        [self addSubview:passwordLabel];
+        mPasswordLabel = [[UILabel alloc] init];
+        [mPasswordLabel setText:@"Password"];
+        [mPasswordLabel sizeToFit];
+        y += mPortTextField.frame.size.height + 15;
+        [mPasswordLabel setFrame:CGRectMake(self.bounds.size.width/2 - mPasswordLabel.frame.size.width/2, y, mPasswordLabel.frame.size.width, mPasswordLabel.frame.size.height)];
+        [self addSubview:mPasswordLabel];
         
-        passwordTextField = [[UITextField alloc] init];
-        [passwordTextField setPlaceholder:@"Password"];
-        [passwordTextField setSecureTextEntry:true];
-        [passwordTextField sizeToFit];
-        [passwordTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [passwordTextField setTextAlignment:NSTextAlignmentCenter];
-        y += passwordLabel.frame.size.height + 10;
-        [passwordTextField setFrame:CGRectMake((self.bounds.size.width / 2 - 60), y, 120, passwordTextField.frame.size.height)];
-        [self addSubview:passwordTextField];
+        mPasswordTextField = [[UITextField alloc] init];
+        [mPasswordTextField setDelegate:(id)self];
+        [mPasswordTextField setPlaceholder:@"Password"];
+        [mPasswordTextField setSecureTextEntry:true];
+        [mPasswordTextField sizeToFit];
+        [mPasswordTextField setBorderStyle:UITextBorderStyleRoundedRect];
+        [mPasswordTextField setTextAlignment:NSTextAlignmentCenter];
+        y += mPasswordLabel.frame.size.height + 20;
+        [mPasswordTextField setFrame:CGRectMake(15, y, (self.bounds.size.width - 30), mPasswordTextField.frame.size.height + 10)];
+        [self addSubview:mPasswordTextField];
         
-        y += passwordTextField.frame.size.height + 20;
-        connectButton = [[UIButton alloc] initWithFrame:CGRectMake((self.bounds.size.width / 2 - 60), y, 120, 43.0)];
-        [connectButton setTitle:@"Connect" forState:UIControlStateNormal];
-        [connectButton setBackgroundColor:UIColor.darkTextColor];
-        [connectButton setTintColor:UIColor.blackColor];
-        [connectButton addTarget:self action:@selector(showRemoteView) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:connectButton];
+        y += mPasswordTextField.frame.size.height + 20;
+        mConnectButton = [[UIButton alloc] initWithFrame:CGRectMake((self.bounds.size.width / 2 - 60), y, 120, 43.0)];
+        [mConnectButton setTitle:@"Connect" forState:UIControlStateNormal];
+        [mConnectButton setBackgroundColor:UIColor.darkTextColor];
+        [mConnectButton setTintColor:UIColor.blackColor];
+        [mConnectButton addTarget:self action:@selector(showRemoteView) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:mConnectButton];
     }
     return self;
 }
 
--(void) showRemoteView {
-    [_mViewController connect:ipTextField.text port:portTextField.text password:passwordTextField.text];
+-(void) showRemoteView
+{
+    [_viewController connect:mIpTextField.text port:mPortTextField.text password:mPasswordTextField.text];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self showRemoteView];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)selectionWillChange:(nullable id <UITextInput>)textInput
+{
+}
+- (void)selectionDidChange:(nullable id <UITextInput>)textInput
+{
+}
+- (void)textWillChange:(nullable id <UITextInput>)textInput
+{
+}
+- (void)textDidChange:(nullable id <UITextInput>)textInput
+{
+}
 @end

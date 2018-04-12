@@ -13,5 +13,5 @@
 @interface RemoteViewController : UIViewController<OpenRVContextDelegate>
 -(instancetype) initViewController:(ViewController*)viewController;
 -(void) sendTouchEvents:(NSSet<UITouch *> *)touches click:(bool)clickdown;
-@property OpenRVContext* mOpenRVContext;
+@property OpenRVContext* openRVContext;
 @end

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "RemoteView.h"
 #import "InputFields.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 {
@@ -21,28 +22,30 @@
 -(void) viewDidLoad
 {
     [super viewDidLoad];
-    inputFields = [[InputFields alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height/3, self.view.bounds.size.width, self.view.bounds.size.height*3/4) viewController:self];
+    UIEdgeInsets inset = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
+    inputFields = [[InputFields alloc] initWithFrame:CGRectMake(0, 10 + inset.bottom, self.view.bounds.size.width, self.view.bounds.size.height*2/3 + inset.bottom) viewController:self];
     [self.view addSubview:inputFields];
 }
 -(void) connect:(NSString*)ip port:(NSString*)port password:(NSString*)password
 {
-    if (_mOpenRVContext) {
+    if (_openRVContext) {
         return;
     }
     if (![ip  isEqual: @""] && ![port isEqual: @""] && ![password isEqual: @""]) {
-        _mOpenRVContext = [[OpenRVContext alloc] init];
+        _openRVContext = [[OpenRVContext alloc] init];
         
         RemoteViewController* remoteCtrl = [[RemoteViewController alloc] initViewController:self];
         [self presentViewController:remoteCtrl animated:true completion:nil];
         
-        _mOpenRVContext.delegate = remoteCtrl;
-        [_mOpenRVContext setCredentials:nil password:password];
-        [_mOpenRVContext setPort:(uint16_t)[port integerValue]];
-        [_mOpenRVContext connectToHost:ip];
+        _openRVContext.delegate = remoteCtrl;
+        [_openRVContext setCredentials:nil password:password];
+        [_openRVContext setPort:(uint16_t)[port integerValue]];
+        [_openRVContext connectToHost:ip];
     }
 }
 - (void)viewDidAppear:(BOOL)animated
 {
+    [self shouldRotate:false];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -55,6 +58,11 @@
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
+}
+-(void) shouldRotate:(bool) rotate
+{
+    AppDelegate* appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    appDelegate.shouldRotate = rotate;
 }
 
 
