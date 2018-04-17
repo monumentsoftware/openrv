@@ -15,6 +15,7 @@
     OpenRVContext* mOpenRVContext;
     BOOL mIsConntected;
     UITextField* mTextField;
+    UIScrollView* mPinchView;
 }
 @end
 
@@ -22,9 +23,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     mIsConntected = false;
+    
+    mPinchView = [[UIScrollView alloc] init];
+    mPinchView.delegate = self;
+    mPinchView.maximumZoomScale = 2;
+    mPinchView.minimumZoomScale = 1;
+    mPinchView.tintColor = UIColor.blueColor;
+    [self.view addSubview:mPinchView];
+    
     mRemoteView = [[RemoteView alloc] init];
     mRemoteView.viewController = self;
-    [self.view addSubview:mRemoteView];
+    [mPinchView addSubview:mRemoteView];
     
     mToolBar = [[UIToolbar alloc] init];
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Disconnect" style:UIBarButtonItemStyleDone  target:nil action:@selector(closeConnection)];
@@ -44,16 +53,26 @@
 {
     UIEdgeInsets inset = [[[UIApplication sharedApplication] delegate] window].safeAreaInsets;
     CGFloat toolbarHeight = 40;
+    [mToolBar setFrame:CGRectMake(0, UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait ? inset.bottom : 0, self.view.bounds.size.width, toolbarHeight)];
     if (mIsConntected) {
         CGFloat r = mOpenRVContext.framebufferSize.width/mOpenRVContext.framebufferSize.height;
         if (UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeRight || UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeLeft) {
-            [mRemoteView setFrame:CGRectMake((self.view.bounds.size.width - (self.view.bounds.size.height-toolbarHeight)*r)/2, toolbarHeight, self.view.bounds.size.height*r, self.view.bounds.size.height-toolbarHeight)];
+            
+            [mPinchView setFrame:CGRectMake(inset.bottom, toolbarHeight, self.view.bounds.size.width - 2*inset.bottom, self.view.bounds.size.height - toolbarHeight)];
+            [mRemoteView setFrame:CGRectMake(mPinchView.bounds.size.width/2 - ((mPinchView.bounds.size.height) * r)/2, 0, (mPinchView.bounds.size.height) * r, mPinchView.bounds.size.height)];
         } else {
             r = mOpenRVContext.framebufferSize.height/mOpenRVContext.framebufferSize.width;
-            [mRemoteView setFrame:CGRectMake(0, (self.view.bounds.size.height - self.view.bounds.size.width*r)/2, self.view.bounds.size.width, self.view.bounds.size.width*r)];
+            
+            [mPinchView setFrame:CGRectMake(0, toolbarHeight + inset.bottom, self.view.bounds.size.width, self.view.bounds.size.height - toolbarHeight + 2*inset.bottom)];
+            
+            [mRemoteView setFrame:CGRectMake(0, self.view.bounds.size.height/3 - (mPinchView.bounds.size.width*r)/2, mPinchView.bounds.size.width, mPinchView.bounds.size.width*r)];
         }
+        mPinchView.contentSize = mRemoteView.bounds.size;
     }
-    [mToolBar setFrame:CGRectMake(0, UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait ? inset.bottom : 0, self.view.bounds.size.width, toolbarHeight)];
+}
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return mRemoteView;
 }
 -(void) sendTouchEvents:(NSSet<UITouch *> *)touches click:(bool)clickdown
 {
@@ -94,7 +113,7 @@
         [mTextField becomeFirstResponder];
     } else {
         [mTextField removeFromSuperview];
-        mTextField = nil;
+        mTextField = NULL;
     }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -126,8 +145,8 @@
 {
     mIsConntected = true;
     [mRemoteView setRemoteBufferSize:context.framebufferSize];
-    CGFloat r = context.framebufferSize.height/context.framebufferSize.width;
-    [mRemoteView setFrame:CGRectMake(0, (self.view.bounds.size.height - self.view.bounds.size.width*r)/2, self.view.bounds.size.width, self.view.bounds.size.width*r)];
+    [self rotated];
+    
     CGSize screenSize = mOpenRVContext.framebufferSize;
     int32_t x = screenSize.width/2;
     int32_t y = screenSize.height/2;
