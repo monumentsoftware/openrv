@@ -28,7 +28,6 @@
     mPinchView.delegate = self;
     mPinchView.maximumZoomScale = 2;
     mPinchView.minimumZoomScale = 1;
-    mPinchView.tintColor = UIColor.blueColor;
     [self.view addSubview:mPinchView];
     
     mRemoteView = [[RemoteView alloc] init];
@@ -56,7 +55,7 @@
     [mToolBar setFrame:CGRectMake(0, UIDevice.currentDevice.orientation == UIDeviceOrientationPortrait ? inset.bottom : 0, self.view.bounds.size.width, toolbarHeight)];
     if (mIsConntected) {
         CGFloat r = mOpenRVContext.framebufferSize.width/mOpenRVContext.framebufferSize.height;
-        if (UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeRight || UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeLeft) {
+        if (UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeRight || UIDevice.currentDevice.orientation == UIDeviceOrientationLandscapeLeft ||UIDevice.currentDevice.orientation == UIDeviceOrientationPortraitUpsideDown) {
             
             [mPinchView setFrame:CGRectMake(inset.bottom, toolbarHeight, self.view.bounds.size.width - 2*inset.bottom, self.view.bounds.size.height - toolbarHeight)];
             [mRemoteView setFrame:CGRectMake(mPinchView.bounds.size.width/2 - ((mPinchView.bounds.size.height) * r)/2, 0, (mPinchView.bounds.size.height) * r, mPinchView.bounds.size.height)];

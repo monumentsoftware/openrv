@@ -27,7 +27,6 @@
     return UIInterfaceOrientationMaskAll;
 }
 
-
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 }
