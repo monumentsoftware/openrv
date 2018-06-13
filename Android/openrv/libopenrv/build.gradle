@@ -17,7 +17,7 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags "-std=c++14 -frtti -fexceptions"
-                abiFilters 'armeabi-v7a'
+                abiFilters 'x86', 'armeabi-v7a'
 
                 // this library project uses a dedicated toplevel CMakeLists.txt and uses the main
                 // openrv CMakeLists.txt as a add_subdirectory() argument. consequently we don't

@@ -8,27 +8,47 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "0.0.1"
-        //externalNativeBuild {
-        //    cmake {
-        //        cppFlags "-frtti -fexceptions"
-        //    }
-        //}
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14 -frtti -fexceptions -fstack-protector-strong"
+                abiFilters 'x86', 'armeabi-v7a'
+            }
+        }
     }
     buildTypes {
+        debug {
+            debuggable true
+            ndk {
+                debuggable = true
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    //externalNativeBuild {
-    //    cmake {
-    //        path "CMakeLists.txt"
-    //    }
-    //}
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':libopenrv')
+}
+
+// Make sure to build libopenrv before building the app, otherwise we get linker errors.
+// NOTE: This is required for every app that uses libopenrv (or a similar android library project
+//       with native libs), but ONLY if that project is included && built directly, NOT if the
+//       library is already distributed as a pre-built library
+tasks.whenTaskAdded { task ->
+    if (task.name == 'externalNativeBuildRelease') {
+        task.dependsOn ":libopenrv:externalNativeBuildRelease"
+    } else if (task.name == 'externalNativeBuildDebug') {
+        task.dependsOn ":libopenrv:externalNativeBuildDebug"
+    }
 }

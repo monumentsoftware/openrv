@@ -73,6 +73,7 @@ extern "C" {
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved)
 {
     ORV_UNUSED(reserved);
+    return JNI_VERSION_1_6;
 }
 
 JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* vm, void* reserved)
@@ -80,7 +81,7 @@ JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* vm, void* reserved)
     ORV_UNUSED(reserved);
 }
 
-JNIEXPORT jlong JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_init()
+JNIEXPORT jlong JNICALL Java_com_monument_1software_libopenrv_OpenRVJNI_init()
 {
     orv_config_t config;
     orv_config_zero(&config);
@@ -91,7 +92,7 @@ JNIEXPORT jlong JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_init()
     return (jlong)context;
 }
 
-JNIEXPORT void JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_destroy(jlong context)
+JNIEXPORT void JNICALL Java_com_monument_1software_libopenrv_OpenRVJNI_destroy(jlong context)
 {
     orv_context_t* ctx = (orv_context_t*)context;
     if (!ctx) {
@@ -101,7 +102,7 @@ JNIEXPORT void JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_destroy(jl
     delete userData;
     orv_destroy(ctx);
 }
-JNIEXPORT jboolean JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_connectToHost(jlong context, jbyteArray host, jint port, jbyteArray password, jboolean viewOnly)
+JNIEXPORT jboolean JNICALL Java_com_monument_1software_libopenrv_OpenRVJNI_connectToHost(jlong context, jbyteArray host, jint port, jbyteArray password, jboolean viewOnly)
 {
     orv_context_t* ctx = (orv_context_t*)context;
     if (!ctx) {
@@ -122,7 +123,7 @@ JNIEXPORT jboolean JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_connec
     return (jboolean)false;
 }
 
-JNIEXPORT void JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_setViewOnly(jlong context, jboolean viewOnly)
+JNIEXPORT void JNICALL Java_com_monument_1software_libopenrv_OpenRVJNI_setViewOnly(jlong context, jboolean viewOnly)
 {
     orv_context_t* ctx = (orv_context_t*)context;
     if (!ctx) {
@@ -131,7 +132,7 @@ JNIEXPORT void JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_setViewOnl
     orv_set_viewonly(ctx, (uint8_t)viewOnly);
 }
 
-JNIEXPORT jboolean JNICALL Java_com_monument_software_libopenrv_OpenRVJNI_isViewOnly(jlong context)
+JNIEXPORT jboolean JNICALL Java_com_monument_1software_libopenrv_OpenRVJNI_isViewOnly(jlong context)
 {
     orv_context_t* ctx = (orv_context_t*)context;
     if (!ctx) {
